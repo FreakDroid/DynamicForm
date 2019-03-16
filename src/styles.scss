@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  /*background: red;*/
+
+
+  .card-title{
+    color: #029DE9;
+  }
+
+  .card-subtitle {
+    color: #413D3D;
+  }
+
+
+
+  .btn-green {
+    color: #fff;
+    background-color: #02E867;
+    border-color: #02E867;
+    border-radius: 25px;
+  }
+
+  .transparent-me{
+    background-color: transparent;
+  }
+
+}

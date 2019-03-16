@@ -1,0 +1,49 @@
+<div class="pos-f-t">
+  <nav class="navbar navbar-expand-sm navbar-light justify-content-between">
+    <a class="navbar-brand" href="#">
+      <img class="logoSize" data-original="https://www.folionet.com//uploads/general/general_1495409290.png"
+           src="https://www.folionet.com//uploads/general/general_1495409290.png" alt="Folionet">
+    </a>
+
+    <button class="btn btn-link" type="button">
+      <span class="navbar-toggler-icon" (click)="showMenu()"></span>
+    </button>
+  </nav>
+  <div class="float-right" *ngIf="visible" @Fading>
+    <div id="sidebar-wrapper" ngClass="">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a (click)="showMenu()">
+            <fa-icon [icon]="['fa', 'times']"></fa-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">User Information</a>
+        </li>
+        <li>
+          <a href="#">Contact Information</a>
+        </li>
+        <li>
+          <a href="#">About You</a>
+        </li>
+        <li>
+          <a href="#">Citizenship</a>
+        </li>
+        <li>
+          <a href="#">Investment Profile</a>
+        </li>
+        <li>
+          <a href="#">Photos</a>
+        </li>
+        <li>
+          <a href="#">Disclosures</a>
+        </li>
+        <li class="logout">
+          <a href="#">Log Out <fa-icon [icon]="['fa', 'power-off']"></fa-icon></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
