@@ -20,8 +20,45 @@ body {
     border-radius: 25px;
   }
 
+  .btn-blue {
+    color: #fff;
+    background-color: #89CDF6;
+    border-color: #02E867;
+    border-radius: 25px;
+  }
+
   .transparent-me{
     background-color: transparent;
+  }
+
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  border: none;
+  width: 45rem; //22
+
+  .underline{
+    border-bottom: 2px solid #029FE9;
+  }
+
+  @media (max-width: 760px) {
+    width: 22rem;
+  }
+
+  label {
+    margin-bottom: .1rem;
+    margin-top: 20px;
+    color: #029DE9;
+  }
+
+
+  fa-icon { position: absolute;
+    top: 7px;
+    right: 12px;
+    color: red;
   }
 
 }

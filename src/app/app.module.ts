@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateAccountModule } from './create-account/create-account.module';
 import { HeaderModule } from './header/header.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeaderModule } from './header/header.module';
     NgbModule,
     HeaderModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
