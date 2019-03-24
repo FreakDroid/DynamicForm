@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { CreateAccountModule } from './create-account/create-account.module';
 import { HeaderModule } from './header/header.module';
 import { LoginModule } from './login/login.module';
+import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
+import { FormQuestionContainerModule} from './form-question-container/form-question-container.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { LoginModule } from './login/login.module';
     HeaderModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    LoginModule
+    LoginModule,
+    DynamicFormModule,
+    FormQuestionContainerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
