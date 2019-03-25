@@ -36,8 +36,8 @@ export class FormQuestionContainerComponent implements OnInit {
       },
       {
         type: 'radio',
-        name: 'country',
-        label: 'Country',
+        name: 'sex',
+        label: 'Sex',
         value: 'in',
         required: true,
         options: [

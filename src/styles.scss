@@ -67,7 +67,9 @@ body {
   .radioButtonsInLine {
     display: inline;
   }
+
 }
+
 
 .card {
   margin: 0 auto; /* Added */
@@ -95,6 +97,17 @@ body {
     top: 7px;
     right: 12px;
     color: red;
+  }
+
+  .borderRadius {
+    background: #E6E6E6;
+    border-color: #E6E6E6;
+    color: #413D3D;
+    border-radius: 10px !important;
+
+    &:first-child{
+      margin: 0;
+    }
   }
 
 }
