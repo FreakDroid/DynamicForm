@@ -22,7 +22,6 @@ import { FormQuestionContainerModule} from './form-question-container/form-quest
     BrowserModule,
     AppRoutingModule,
     CreateAccountModule,
-    NgbModule,
     HeaderModule,
     BrowserAnimationsModule,
     FontAwesomeModule,

@@ -35,18 +35,15 @@ export class FormQuestionContainerComponent implements OnInit {
         minLength: 4
       },
       {
-        type: 'text',
-        name: 'address',
-        label: 'Address',
-        value: '',
+        type: 'radio',
+        name: 'country',
+        label: 'Country',
+        value: 'in',
         required: true,
-      },
-      {
-        type: 'text',
-        name: 'phone',
-        label: 'Phone',
-        value: '',
-        required: true,
+        options: [
+          { key: 'm', label: 'Male' },
+          { key: 'f', label: 'Female' }
+        ]
       }
     ]
   };
