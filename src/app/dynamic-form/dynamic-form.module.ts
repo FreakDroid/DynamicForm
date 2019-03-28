@@ -12,11 +12,12 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RadioButtonComponent} from './controls/radioButton';
+import {DropDownComponent} from './controls/dropdown';
 
 
 
 @NgModule({
-  declarations: [DynamicFormComponent, FieldBuilderComponent, TextBoxComponent, RadioButtonComponent],
+  declarations: [DynamicFormComponent, FieldBuilderComponent, TextBoxComponent, RadioButtonComponent, DropDownComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

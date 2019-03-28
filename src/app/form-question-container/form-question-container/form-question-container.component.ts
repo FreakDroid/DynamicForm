@@ -17,6 +17,7 @@ export class FormQuestionContainerComponent implements OnInit {
       cardTitle: 'Contact',
       cardSubtitle: 'Information',
       cardMessage: '',
+      model: 'radio'
     },
     fields:  [
       {
@@ -38,11 +39,23 @@ export class FormQuestionContainerComponent implements OnInit {
         type: 'radio',
         name: 'sex',
         label: 'Sex',
-        value: 'in',
+        value: 'm',
         required: true,
         options: [
           { key: 'm', label: 'Male' },
           { key: 'f', label: 'Female' }
+        ]
+      },
+      {
+        type: 'dropdown',
+        name: 'country',
+        label: 'Country',
+        value: 'no',
+        required: true,
+        options: [
+          { key: 'no', label: 'Select Country' },
+          { key: 'in', label: 'India' },
+          { key: 'us', label: 'USA' }
         ]
       }
     ]
@@ -86,7 +99,7 @@ export class FormQuestionContainerComponent implements OnInit {
   constructor() {
     this.form = new FormGroup({
       fields: new FormControl(JSON.stringify(this.fields))
-    })
+    });
     this.unsubcribe = this.form.valueChanges.subscribe((update) => {
       console.log(update);
       this.fields = JSON.parse(update.fields);
@@ -104,6 +117,11 @@ export class FormQuestionContainerComponent implements OnInit {
 
   ngDistroy() {
     this.unsubcribe();
+  }
+
+  onSubmit(event) {
+    console.log('actual values');
+    console.log(event);
   }
 
 }
