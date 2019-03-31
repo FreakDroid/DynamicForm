@@ -47,6 +47,12 @@ export class FormQuestionContainerComponent implements OnInit {
         ]
       },
       {
+        type: 'file',
+        name: 'picture',
+        label: 'Picture',
+        onUpload: this.onUpload.bind(this)
+      },
+      {
         type: 'dropdown',
         name: 'country',
         label: 'Country',
@@ -107,6 +113,7 @@ export class FormQuestionContainerComponent implements OnInit {
   }
 
   onUpload(e) {
+    console.log('onUpload');
     console.log(e);
 
   }
