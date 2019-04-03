@@ -15,8 +15,11 @@ import {RadioButtonComponent} from './controls/radioButton';
 import {DropDownComponent} from './controls/dropdown';
 import {FileUploadComponent} from './controls/fileupload';
 import { InputFileConfig, InputFileModule } from 'ngx-input-file';
+import { UiSwitchModule } from 'ngx-toggle-switch';
+
 
 import {MatButtonModule} from '@angular/material';
+import {SwitchToggleFieldComponent} from './controls/switchToggleField';
 
 //Fileupload Config
 const config: InputFileConfig = {
@@ -27,7 +30,7 @@ const config: InputFileConfig = {
 
 @NgModule({
   declarations: [DynamicFormComponent, FieldBuilderComponent, TextBoxComponent,
-    RadioButtonComponent, DropDownComponent, FileUploadComponent],
+    RadioButtonComponent, DropDownComponent, FileUploadComponent, SwitchToggleFieldComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -36,7 +39,8 @@ const config: InputFileConfig = {
     NgbModule,
     BrowserAnimationsModule,
     InputFileModule.forRoot(config),
-    MatButtonModule
+    MatButtonModule,
+    UiSwitchModule
   ],
   exports: [
     DynamicFormComponent,

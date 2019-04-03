@@ -9,6 +9,7 @@ export class FieldBuilderComponent implements OnInit {
 
   @Input() field: any;
   @Input() form: any;
+  showMe = false;
 
   get isValid() { return this.form.controls[this.field.name].valid; }
   get isDirty() { return this.form.controls[this.field.name].dirty; }
@@ -17,6 +18,10 @@ export class FieldBuilderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChange(e) {
+    this.showMe = e;
   }
 
 }

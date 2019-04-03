@@ -63,6 +63,38 @@ export class FormQuestionContainerComponent implements OnInit {
           { key: 'in', label: 'India' },
           { key: 'us', label: 'USA' }
         ]
+      },
+      {
+        type: 'switchToggleField',
+        name: 'switch',
+        label: 'This is a toggle field',
+        value: 'switch',
+        required: false,
+        subFields: [
+          {
+            type: 'text',
+            name: 'say',
+            label: 'Hallo',
+            value: '',
+            required: false,
+          }
+        ]
+      },
+      {
+        type: 'switchToggleField',
+        name: 'switch2',
+        label: 'This is a toggle field',
+        value: 'switch',
+        required: false,
+        subFields: [
+          {
+            type: 'text',
+            name: 'say2',
+            label: 'Hallo2',
+            value: '',
+            required: false,
+          }
+        ]
       }
     ]
   };

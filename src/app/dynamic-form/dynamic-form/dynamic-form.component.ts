@@ -16,16 +16,25 @@ export class DynamicFormComponent implements OnInit {
   ngOnInit() {
     let fieldsCtrls = {};
     for (let f of this.formInfo.fields) {
-      if (f.type != 'checkbox') {
+      //console.log(f)
+      if(f.type === 'switchToggleField'){
+        for (let k of f.subFields) {
+          //console.log(k);
+          fieldsCtrls[k.name] = new FormControl(k.value || '', Validators.required);
+        }
+      } else if (f.type !== 'checkbox') {
         fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
       } else {
-        let opts = {};
-        for (let opt of f.options) {
+        const opts = {};
+        for (const opt of f.options) {
           opts[opt.key] = new FormControl(opt.value);
         }
-        fieldsCtrls[f.name] = new FormGroup(opts)
+        fieldsCtrls[f.name] = new FormGroup(opts);
       }
     }
     this.form = new FormGroup(fieldsCtrls);
+
+    //return this.form.controls[this.field.name]
+    console.log(this.form.controls['say'].errors);
   }
 }

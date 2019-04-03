@@ -1,5 +1,5 @@
 <div class="form-group" [formGroup]="form">
-  <label class="form-control-label" [attr.for]="field.label">
+  <label class="form-control-label" [attr.for]="field.label" *ngIf="field.type !== 'switchToggleField'">
     {{field.label}}
   </label>
   <div class="input-group" [ngSwitch]="field.type">
@@ -7,6 +7,23 @@
     <app-radio class="dynamicForm-maxSize" *ngSwitchCase="'radio'" [field]="field" [form]="form"></app-radio>
     <app-dropdown class="dynamicForm-maxSize" *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></app-dropdown>
     <app-fileupload *ngSwitchCase="'file'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-fileupload>
-    <fa-icon *ngIf="thisField.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+
+
+
+    <label class="form-control-label" [attr.for]="field.label" *ngIf="field.type === 'switchToggleField'">
+      {{field.label}}
+    </label>
+    <ui-switch *ngSwitchCase="'switchToggleField'" (change)="onChange($event)"></ui-switch>
+    <br />
+    <div  class="input-group" *ngFor="let subField of field?.subFields">
+
+      <div *ngIf="showMe" [ngSwitch]="subField.type">
+        <label class="form-control-label" [attr.for]="subField.label">
+          {{subField.label}}
+        </label>
+        <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="subField" [form]="form"></app-textbox>
+      </div>
+    </div>
+    <fa-icon *ngIf="thisField?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
   </div>
 </div>
