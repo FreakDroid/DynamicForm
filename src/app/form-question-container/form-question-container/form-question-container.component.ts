@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-form-question-container',
@@ -19,7 +19,7 @@ export class FormQuestionContainerComponent implements OnInit {
       cardMessage: '',
       model: 'radio'
     },
-    fields:  [
+    fields: [
       {
         type: 'text',
         name: 'firstName',
@@ -42,8 +42,8 @@ export class FormQuestionContainerComponent implements OnInit {
         value: 'm',
         required: true,
         options: [
-          { key: 'm', label: 'Male' },
-          { key: 'f', label: 'Female' }
+          {key: 'm', label: 'Male'},
+          {key: 'f', label: 'Female'}
         ]
       },
       {
@@ -59,9 +59,9 @@ export class FormQuestionContainerComponent implements OnInit {
         value: 'no',
         required: true,
         options: [
-          { key: 'no', label: 'Select Country' },
-          { key: 'in', label: 'India' },
-          { key: 'us', label: 'USA' }
+          {key: 'no', label: 'Select Country'},
+          {key: 'in', label: 'India'},
+          {key: 'us', label: 'USA'}
         ]
       },
       {
@@ -81,10 +81,10 @@ export class FormQuestionContainerComponent implements OnInit {
         ]
       },
       {
-        type: 'switchToggleField',
-        name: 'switch2',
-        label: 'This is a toggle field',
-        value: 'switch',
+        type: 'switchToggleFieldWithBox',
+        name: 'switchToggleFieldWithBox',
+        label: 'This is a toggle field With Box',
+        value: 'switch2',
         required: false,
         subFields: [
           {
@@ -93,6 +93,47 @@ export class FormQuestionContainerComponent implements OnInit {
             label: 'Hallo2',
             value: '',
             required: false,
+          }
+        ]
+      },
+      {
+        type: 'radioButtonToggle',
+        name: 'rbt',
+        label: 'Select please whether Yes or No',
+        value: '',
+        required: false,
+        options: [
+          {key: '1', label: 'Yes'},
+          {key: '2', label: 'No'}
+        ],
+        subFields: [
+          {
+            group: {
+              value: 1,
+              controls: [
+                {
+                  type: 'text',
+                  name: 'ssn',
+                  label: 'SSN/ITIN',
+                  value: null,
+                  required: true
+                }
+              ]
+            }
+          },
+          {
+            group: {
+              value: 2,
+              controls: [
+                {
+                  type: 'text',
+                  name: 'ssn2',
+                  label: 'Type Your name',
+                  value: null,
+                  required: true
+                }
+              ]
+            }
           }
         ]
       }
@@ -139,6 +180,7 @@ export class FormQuestionContainerComponent implements OnInit {
       fields: new FormControl(JSON.stringify(this.fields))
     });
     this.unsubcribe = this.form.valueChanges.subscribe((update) => {
+      console.log('llegue');
       console.log(update);
       this.fields = JSON.parse(update.fields);
     });
@@ -151,7 +193,7 @@ export class FormQuestionContainerComponent implements OnInit {
   }
 
   getFields() {
-    return this.formInfo  ;
+    return this.formInfo;
   }
 
   ngDistroy() {

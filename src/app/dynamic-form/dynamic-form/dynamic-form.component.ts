@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -11,16 +11,25 @@ export class DynamicFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter();
   @Input() formInfo: any = {};
   form: FormGroup;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
     let fieldsCtrls = {};
     for (let f of this.formInfo.fields) {
-      //console.log(f)
-      if(f.type === 'switchToggleField'){
+      if (f.type === 'switchToggleField' || f.type === 'switchToggleFieldWithBox') {
         for (let k of f.subFields) {
-          //console.log(k);
           fieldsCtrls[k.name] = new FormControl(k.value || '', Validators.required);
+        }
+      } else if (f.type === 'radioButtonToggle') {
+        //console.log(f.subFields);
+        fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
+        for (let c of f.subFields) {
+          for (let l of c.group.controls) {
+            //console.log(l);
+            fieldsCtrls[l.name] = new FormControl(l.value || '', Validators.required);
+          }
         }
       } else if (f.type !== 'checkbox') {
         fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
@@ -33,8 +42,5 @@ export class DynamicFormComponent implements OnInit {
       }
     }
     this.form = new FormGroup(fieldsCtrls);
-
-    //return this.form.controls[this.field.name]
-    console.log(this.form.controls['say'].errors);
   }
 }

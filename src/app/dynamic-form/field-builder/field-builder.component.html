@@ -1,5 +1,6 @@
 <div class="form-group" [formGroup]="form">
-  <label class="form-control-label" [attr.for]="field.label" *ngIf="field.type !== 'switchToggleField'">
+  <label class="form-control-label" [attr.for]="field.label"
+         *ngIf="field.type !== 'switchToggleField' && field.type !== 'switchToggleFieldWithBox'">
     {{field.label}}
   </label>
   <div class="input-group" [ngSwitch]="field.type">
@@ -9,14 +10,18 @@
     <app-fileupload *ngSwitchCase="'file'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-fileupload>
     <fa-icon *ngIf="thisField?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
 
+    <app-switch-toggle-field *ngSwitchCase="'switchToggleField'" [field]="field" [form]="form" class="dynamicForm-maxSize">
+    </app-switch-toggle-field>
 
-    <div class="dynamicForm-maxSize">
-      <div class="text-center">
-        <label class="form-control-label" [attr.for]="field.label"
-               *ngIf="field.type === 'switchToggleField'">
+
+
+    <div class="dynamicForm-maxSize switch-box">
+      <div class="dynamicForm-maxSize fa-pull-left">
+        <label class="form-control-label mid-size" [attr.for]="field.label"
+               *ngIf="field.type === 'switchToggleFieldWithBox'">
           {{field.label}}
         </label>
-        <ui-switch class="align-middle switch-style" *ngSwitchCase="'switchToggleField'"
+        <ui-switch class="align-middle switch-style" *ngSwitchCase="'switchToggleFieldWithBox'"
                    (change)="onChange($event)"></ui-switch>
       </div>
 
@@ -30,6 +35,9 @@
         </div>
       </div>
     </div>
+
+    <app-btradio class="dynamicForm-maxSize" *ngSwitchCase="'radioButtonToggle'" [field]="field"
+                 [form]="form"></app-btradio>
 
 
   </div>

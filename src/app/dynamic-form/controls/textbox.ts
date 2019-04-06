@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
 
 // text,email,tel,textarea,password,
 @Component({
@@ -12,7 +12,8 @@ import {FormGroup} from '@angular/forms';
                 [formControlName]="field.name" [id]="field.name"
                 rows="9" class="form-control" [placeholder]="field.placeholder"></textarea>
     </div>
-  `
+  `,
+  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class TextBoxComponent {
   @Input() field: any = {};
