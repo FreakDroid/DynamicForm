@@ -3,19 +3,22 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
 
 // text,email,tel,textarea,password,
 @Component({
-  selector: 'app-radio',
+  selector: 'app-sradio',
   template: `
     <div class="btn-group btn-group-toggle dynamicForm-maxSize radioButtonsInLine" ngbRadioGroup
          [formGroup]="form" [formControlName]="field.name">
       <label *ngFor="let opt of field.options" ngbButtonLabel class="btn-primary borderRadius dynamicForm-maxSize">
-        <input ngbButton type="radio" [value]="opt.key" > {{opt.label}}
+        <input ngbButton type="radio" [value]="opt.key" (click)="selected(opt.key)"> {{opt.label}}
       </label>
       <br/>
     </div>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
-export class RadioButtonComponent {
+export class RadioButtonSubmitComponent {
   @Input() field: any = {};
   @Input() form: FormGroup;
+
+  selected() {
+  }
 }

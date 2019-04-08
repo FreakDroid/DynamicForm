@@ -136,6 +136,26 @@ export class FormQuestionContainerComponent implements OnInit {
             }
           }
         ]
+      },
+      {
+        type: 'radioSubmit',
+        name: 'ok',
+        label: 'Are you Ok',
+        value: '',
+        required: false,
+        options: [
+          {key: 'y', label: 'Yes'},
+          {key: 'n', label: 'No'}
+        ]
+      },
+      {
+        type: 'textboxIncreaseDecrease',
+        name: 'numberDependents',
+        label: 'Number of dependents',
+        value: '',
+        required: false,
+        minLength: 1,
+        maxLength: 5
       }
     ]
   };
