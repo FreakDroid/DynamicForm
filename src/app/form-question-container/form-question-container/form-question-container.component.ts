@@ -117,6 +117,13 @@ export class FormQuestionContainerComponent implements OnInit {
                   label: 'SSN/ITIN',
                   value: null,
                   required: true
+                },
+                {
+                  type: 'text',
+                  name: 'MAtthew',
+                  label: 'Matthew',
+                  value: null,
+                  required: true
                 }
               ]
             }

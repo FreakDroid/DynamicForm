@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms';
 import {forEach} from '@angular/router/src/utils/collection';
 
@@ -15,7 +15,6 @@ import {forEach} from '@angular/router/src/utils/collection';
 
       <div class="input-group" *ngFor="let subField of field?.subFields">
         <div class="dynamicForm-maxSize" *ngIf="subField.group.value == showMe">
-          Test Test {{subField.group.value }}
           <div *ngFor="let control of subField.group.controls">
             <div class="dynamicForm-maxSize" *ngIf="showMe" [ngSwitch]="control.type">
               <label class="form-control-label" [attr.for]="control.label">
@@ -23,7 +22,9 @@ import {forEach} from '@angular/router/src/utils/collection';
               </label>
               <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="control"
                            [form]="form"></app-textbox>
-              <fa-icon *ngIf="thisField?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+              {{form.controls[control.name]?.errors?.required}}
+              <fa-icon *ngIf="form.controls[field.name]?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+              afsdfsdfasd
             </div>
           </div>
         </div>
@@ -32,12 +33,21 @@ import {forEach} from '@angular/router/src/utils/collection';
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
-export class RadioButtonToggleComponent {
+export class RadioButtonToggleComponent implements OnInit{
   @Input() field: any = {};
   @Input() form: FormGroup;
   showMe = false;
   constructor() {
   }
+
+  ngOnInit(){
+    console.log(this.field.name);
+    console.log(this.field);
+    console.log('this.form.controls[this.field.name]', this.form.controls);
+  }
+
+  get getThisField() { return this.form.controls[this.field.name]; }
+
   selected(e) {
     console.log(e);
     this.showMe = e;

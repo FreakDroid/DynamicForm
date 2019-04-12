@@ -9,7 +9,6 @@
     <app-radio class="dynamicForm-maxSize" *ngSwitchCase="'radio'" [field]="field" [form]="form"></app-radio>
     <app-dropdown class="dynamicForm-maxSize" *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></app-dropdown>
     <app-fileupload *ngSwitchCase="'file'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-fileupload>
-    <fa-icon *ngIf="thisField?.errors?.required"  [icon]="['fa', 'exclamation-circle']"></fa-icon>
 
     <app-switch-toggle-field *ngSwitchCase="'switchToggleField'" [field]="field" [form]="form"
                              class="dynamicForm-maxSize">
@@ -38,7 +37,7 @@
     </div>
 
     <app-btradio class="dynamicForm-maxSize" *ngSwitchCase="'radioButtonToggle'" [field]="field"
-                 [form]="form"></app-btradio>
+                 [form]="form" [field]="thisField"></app-btradio>
 
     <app-sradio class="dynamicForm-maxSize" *ngSwitchCase="'radioSubmit'" [field]="field"
                 [form]="form"></app-sradio>

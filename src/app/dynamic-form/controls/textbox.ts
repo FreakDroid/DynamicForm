@@ -11,6 +11,7 @@ import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
       <textarea *ngIf="field.multiline" [class.is-invalid]="isDirty && !isValid"
                 [formControlName]="field.name" [id]="field.name"
                 rows="9" class="form-control" [placeholder]="field.placeholder"></textarea>
+      <fa-icon *ngIf="form.controls[field.name]?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
     </div>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
