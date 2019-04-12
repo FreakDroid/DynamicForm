@@ -16,23 +16,24 @@ export class DynamicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    let fieldsCtrls = {};
-    for (let f of this.formInfo.fields) {
+    const fieldsCtrls = {};
+    for (const f of this.formInfo.fields) {
       if (f.type === 'switchToggleField' || f.type === 'switchToggleFieldWithBox') {
-        for (let k of f.subFields) {
-          fieldsCtrls[k.name] = new FormControl(k.value || '', Validators.required);
+        for (const k of f.subFields) {
+          console.log('the K', k),
+          fieldsCtrls[k.name] = new FormControl(k.value || '', this.createValidators(k));
         }
       } else if (f.type === 'radioButtonToggle') {
-        //console.log(f.subFields);
-        fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
-        for (let c of f.subFields) {
-          for (let l of c.group.controls) {
-            //console.log(l);
-            fieldsCtrls[l.name] = new FormControl(l.value || '', Validators.required);
+        // console.log(f.subFields);
+        fieldsCtrls[f.name] = new FormControl(f.value || '', this.createValidators(f));
+        for (const c of f.subFields) {
+          for (const l of c.group.controls) {
+            // console.log(l);
+            fieldsCtrls[l.name] = new FormControl(l.value || '', this.createValidators(l));
           }
         }
       } else if (f.type !== 'checkbox') {
-        fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
+        fieldsCtrls[f.name] = new FormControl(f.value || '', this.createValidators(f));
       } else {
         const opts = {};
         for (const opt of f.options) {
@@ -42,5 +43,22 @@ export class DynamicFormComponent implements OnInit {
       }
     }
     this.form = new FormGroup(fieldsCtrls);
+  }
+
+
+  private createValidators(param) {
+    const { required, minLength } = param;
+    console.log('my param ', param);
+    console.log('my require ', required);
+    const validators = [];
+
+    if (required) {
+      validators.push(Validators.required);
+    }
+
+    if (minLength) {
+      validators.push(Validators.minLength(minLength));
+    }
+    return validators;
   }
 }
