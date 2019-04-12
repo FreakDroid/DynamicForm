@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
 
 // text,email,tel,textarea,password,
@@ -11,16 +11,18 @@ import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
       <textarea *ngIf="field.multiline" [class.is-invalid]="isDirty && !isValid"
                 [formControlName]="field.name" [id]="field.name"
                 rows="9" class="form-control" [placeholder]="field.placeholder"></textarea>
+      {{field.name}}
       <fa-icon *ngIf="form.controls[field.name]?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
     </div>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
-export class TextBoxComponent {
+export class TextBoxComponent implements OnInit {
   @Input() field: any = {};
   @Input() form: FormGroup;
 
   get isValid() {
+
     return this.form.controls[this.field.name].valid;
   }
 
@@ -29,6 +31,11 @@ export class TextBoxComponent {
   }
 
   constructor() {
+  }
 
+  ngOnInit(){
+    console.log('knock');
+    console.log(this.field.name)
+    console.log(this.form.controls);
   }
 }

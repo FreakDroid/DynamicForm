@@ -104,10 +104,11 @@ body {
   }
 
 
-  fa-icon { position: absolute;
-    top: 7px;
-    right: 12px;
+  fa-icon {
     color: red;
+    float: right;
+    margin-top: -31px;
+    margin-right: 11px;
   }
 
   .borderRadius {

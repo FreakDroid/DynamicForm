@@ -22,9 +22,6 @@ import {forEach} from '@angular/router/src/utils/collection';
               </label>
               <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="control"
                            [form]="form"></app-textbox>
-              {{form.controls[control.name]?.errors?.required}}
-              <fa-icon *ngIf="form.controls[field.name]?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
-              afsdfsdfasd
             </div>
           </div>
         </div>

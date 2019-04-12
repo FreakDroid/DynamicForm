@@ -25,7 +25,7 @@ export class FormQuestionContainerComponent implements OnInit {
         name: 'firstName',
         label: 'First Name',
         value: '',
-        required: true,
+        required: false,
       },
       {
         type: 'text',
@@ -120,10 +120,10 @@ export class FormQuestionContainerComponent implements OnInit {
                 },
                 {
                   type: 'text',
-                  name: 'MAtthew',
+                  name: 'txtname',
                   label: 'Matthew',
                   value: null,
-                  required: true
+                  required: false
                 }
               ]
             }
