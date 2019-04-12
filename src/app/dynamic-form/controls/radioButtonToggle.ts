@@ -1,8 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms';
-import {forEach} from '@angular/router/src/utils/collection';
 
-// text,email,tel,textarea,password,
 @Component({
   selector: 'app-btradio',
   template: `
@@ -30,20 +28,13 @@ import {forEach} from '@angular/router/src/utils/collection';
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
-export class RadioButtonToggleComponent implements OnInit{
+export class RadioButtonToggleComponent {
   @Input() field: any = {};
   @Input() form: FormGroup;
   showMe = false;
   constructor() {
   }
 
-  ngOnInit(){
-    console.log(this.field.name);
-    console.log(this.field);
-    console.log('this.form.controls[this.field.name]', this.form.controls);
-  }
-
-  get getThisField() { return this.form.controls[this.field.name]; }
 
   selected(e) {
     console.log(e);

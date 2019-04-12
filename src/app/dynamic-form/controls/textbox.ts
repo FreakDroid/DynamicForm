@@ -35,7 +35,7 @@ export class TextBoxComponent implements OnInit {
 
   ngOnInit(){
     console.log('knock');
-    console.log(this.field.name)
+    console.log(this.field.name);
     console.log(this.form.controls);
   }
 }
