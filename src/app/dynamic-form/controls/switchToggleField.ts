@@ -20,7 +20,6 @@ import {FormGroup} from '@angular/forms';
           </label>
           <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="subField"
                        [form]="form"></app-textbox>
-          <fa-icon *ngIf="thisField?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
     </div>
