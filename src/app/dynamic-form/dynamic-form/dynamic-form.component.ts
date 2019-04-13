@@ -8,7 +8,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class DynamicFormComponent implements OnInit {
 
-  @Output() onSubmit = new EventEmitter();
+  @Output() submit = new EventEmitter();
   @Input() formInfo: any = {};
   form: FormGroup;
 
