@@ -40,7 +40,7 @@
                  [form]="form" [field]="thisField"></app-btradio>
 
     <app-sradio class="dynamicForm-maxSize" *ngSwitchCase="'radioSubmit'" [field]="field"
-                [form]="form"></app-sradio>
+                [form]="form" (onSubmit)="submit.emit()"></app-sradio>
 
     <app-text-box-increase-decrease class="dynamicForm-maxSize" *ngSwitchCase="'textboxIncreaseDecrease'"
                                     [field]="field"
