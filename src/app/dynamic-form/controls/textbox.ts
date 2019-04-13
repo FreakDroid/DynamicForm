@@ -6,16 +6,18 @@ import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
   selector: 'app-textbox',
   template: `
     <div [formGroup]="form">
-      <input class="form-control"  *ngIf="!field.multiline" [attr.type]="field.type" class="form-control"
+      <input class="form-control" *ngIf="!field.multiline" [placeholder]="field.placeholder ? field.placeholder : ''"
+             [attr.type]="field.type" class="form-control"
              [id]="field.name" [name]="field.name" [formControlName]="field.name">
       <textarea *ngIf="field.multiline" [class.is-invalid]="isDirty && !isValid"
                 [formControlName]="field.name" [id]="field.name"
                 rows="9" class="form-control" [placeholder]="field.placeholder"></textarea>
-      {{field.name}}
-      <fa-icon *ngIf="form.controls[field.name]?.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+      {{!form.controls[field.name].invalid}}
+      <fa-icon *ngIf="form.controls[field.name]?.errors"
+               [icon]="['fa', 'exclamation-circle']"></fa-icon>
     </div>
   `,
-  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+  viewProviders: [{provide: ControlContainer, useExisting: FormGroupDirective}]
 })
 export class TextBoxComponent implements OnInit {
   @Input() field: any = {};
@@ -33,9 +35,6 @@ export class TextBoxComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(){
-    console.log('knock');
-    console.log(this.field.name)
-    console.log(this.form.controls);
+  ngOnInit() {
   }
 }

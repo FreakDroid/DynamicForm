@@ -8,8 +8,9 @@
       </div>
 
         <div class="form-group text-center button-login-margin">
-          <button type="submit" class="btn btn-blue mb-2 margin-right-btn"  >Back</button>
-          <button type="submit" class="btn btn-green mb-2 ">Continue</button>
+          <button type="submit" class="btn btn-blue mb-2 margin-right-btn">Back</button>
+          {{form.valid}}
+          <button type="submit" class="btn btn-green mb-2 " [disabled]="!form.valid">Continue</button>
         </div>
     </form>
   </div>

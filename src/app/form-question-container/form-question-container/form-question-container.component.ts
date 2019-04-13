@@ -16,16 +16,32 @@ export class FormQuestionContainerComponent implements OnInit {
     basicFormInfo: {
       cardTitle: 'Contact',
       cardSubtitle: 'Information',
-      cardMessage: '',
-      model: 'radio'
+      cardMessage: ''
     },
     fields: [
+      {
+        type: 'text',
+        name: 'ngbaires',
+        label: 'ngBaires',
+        value: '',
+        required: true,
+        placeholder: 'ngBaires'
+      },
       {
         type: 'text',
         name: 'firstName',
         label: 'First Name',
         value: '',
+        required: true,
+        placeholder: 'Wilfredo'
+      },
+      {
+        type: 'text',
+        name: 'skn',
+        label: 'SKN',
+        value: '',
         required: false,
+        pattern: /^(\d{3})-(\d{2})-(\d{4})$/
       },
       {
         type: 'text',
@@ -137,7 +153,7 @@ export class FormQuestionContainerComponent implements OnInit {
                   name: 'ssn2',
                   label: 'Type Your name',
                   value: null,
-                  required: true
+                  required: false
                 }
               ]
             }
@@ -167,56 +183,23 @@ export class FormQuestionContainerComponent implements OnInit {
     ]
   };
 
-  public fields: any[] = [
-    {
-      type: 'text',
-      name: 'firstName',
-      label: 'First Name',
-      value: '',
-      required: true,
-    },
-    {
-      type: 'text',
-      name: 'lastName',
-      label: 'last Name',
-      value: '',
-      required: true,
-      minLength: 4
-    },
-    {
-      type: 'text',
-      name: 'address',
-      label: 'Address',
-      value: '',
-      required: true,
-    },
-    {
-      type: 'text',
-      name: 'phone',
-      label: 'Phone',
-      value: '',
-      required: true,
-    }
-  ];
-
   ngOnInit() {
   }
 
   constructor() {
     this.form = new FormGroup({
-      fields: new FormControl(JSON.stringify(this.fields))
+      fields: new FormControl(JSON.stringify(this.formInfo))
     });
     this.unsubcribe = this.form.valueChanges.subscribe((update) => {
       console.log('llegue');
       console.log(update);
-      this.fields = JSON.parse(update.fields);
+      this.formInfo = JSON.parse(update.fields);
     });
   }
 
   onUpload(e) {
     console.log('onUpload');
     console.log(e);
-
   }
 
   getFields() {
@@ -230,6 +213,7 @@ export class FormQuestionContainerComponent implements OnInit {
   onSubmit(event) {
     console.log('actual values');
     console.log(event);
+    console.log(this.form);
   }
 
 }
