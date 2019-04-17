@@ -13,7 +13,7 @@
         <label class="form-control-label">
           Username
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="userName">
           <fa-icon *ngIf="(f.userName.errors?.required || f.userName.errors?.minlength)" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
@@ -23,7 +23,7 @@
         <label class="form-control-label" for="password">
           Password
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="password" id="password" type="password">
           <fa-icon *ngIf="f.password.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>

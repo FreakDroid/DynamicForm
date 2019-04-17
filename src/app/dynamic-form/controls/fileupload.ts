@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 // text,email,tel,textarea,password,
@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
       </div>
     `,
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements OnInit {
   @Input() field: any = {};
   @Input() form: FormGroup;
   get isValid() { return this.form.controls[this.field.name].valid; }
@@ -18,6 +18,11 @@ export class FileUploadComponent {
 
   constructor() {
 
+  }
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.form.controls[this.field.name].setValue(this.field.value);
+    });
   }
 
   ngOnChange() {

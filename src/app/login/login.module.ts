@@ -6,6 +6,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 import { LoginRoutingModule } from './login-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -14,7 +15,8 @@ import { LoginRoutingModule } from './login-routing.module';
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    HttpClientModule
   ],
   exports: [
     LoginComponent,

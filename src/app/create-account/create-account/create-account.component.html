@@ -9,9 +9,9 @@
         <label class="form-control-label">
           Username
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="userName">
-          <fa-icon *ngIf="(f.userName.errors?.required || f.userName.errors?.minlength)"
+          <fa-icon class="no-position" class="no-position" *ngIf="(f.userName.errors?.required || f.userName.errors?.minlength)"
                    [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
@@ -24,9 +24,9 @@
         <label class="form-control-label" for="password">
           Password
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="password" id="password" type="password">
-          <fa-icon *ngIf="f.password.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+          <fa-icon class="no-position" class="no-position" *ngIf="f.password.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
 
@@ -37,9 +37,9 @@
         <label class="form-control-label" for="confirmPassword">
           Confirm Password
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="confirmPassword" id="confirmPassword" type="password">
-          <fa-icon *ngIf="f.confirmPassword.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+          <fa-icon class="no-position" class="no-position" *ngIf="f.confirmPassword.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
 
@@ -47,9 +47,9 @@
         <label class="form-control-label" for="firstName">
           First Name
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="firstName" id="firstName">
-          <fa-icon *ngIf="f.firstName.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+          <fa-icon class="no-position" *ngIf="f.firstName.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
 
@@ -64,9 +64,9 @@
         <label class="form-control-label" for="lastName">
           Last Name
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="lastName" id="lastName">
-          <fa-icon *ngIf="f.lastName.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+          <fa-icon class="no-position" *ngIf="f.lastName.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
 

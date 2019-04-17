@@ -103,6 +103,15 @@ body {
     color: #029DE9;
   }
 
+  .login-createAccount {
+    fa-icon {
+      margin-top: 0px;
+    }
+  }
+
+  .no-position{
+    position: inherit !important;
+  }
 
   fa-icon {
     color: red;
