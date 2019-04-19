@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import {CreateAccountService} from './create-account.service';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
   ],
   exports: [
     CreateAccountComponent
-  ]
+  ],
+  providers: [ CreateAccountService ]
 })
 export class CreateAccountModule {
   constructor() {
