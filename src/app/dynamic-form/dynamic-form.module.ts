@@ -23,6 +23,7 @@ import {SwitchToggleFieldComponent} from './controls/switchToggleField';
 import {RadioButtonToggleComponent} from './controls/radioButtonToggle';
 import {RadioButtonSubmitComponent} from './controls/radioButtonSubmit';
 import {TextboxIncreaseDecreaseComponent} from './controls/textboxIncreaseDecrease';
+import {LinkComponent} from './controls/link';
 
 //Fileupload Config
 const config: InputFileConfig = {
@@ -34,7 +35,7 @@ const config: InputFileConfig = {
 @NgModule({
   declarations: [DynamicFormComponent, FieldBuilderComponent, TextBoxComponent,
     RadioButtonComponent, DropDownComponent, FileUploadComponent, SwitchToggleFieldComponent, RadioButtonToggleComponent,
-    RadioButtonSubmitComponent, TextboxIncreaseDecreaseComponent
+    RadioButtonSubmitComponent, TextboxIncreaseDecreaseComponent, LinkComponent
   ],
   imports: [
     CommonModule,

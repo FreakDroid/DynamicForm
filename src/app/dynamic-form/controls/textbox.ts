@@ -24,7 +24,6 @@ export class TextBoxComponent implements OnInit {
   @Input() form: FormGroup;
 
   get isValid() {
-
     return this.form.controls[this.field.name].valid;
   }
 

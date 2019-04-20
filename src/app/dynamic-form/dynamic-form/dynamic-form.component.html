@@ -3,7 +3,7 @@
 
     <div class="row underline boxNoMargin">
       <div class="col boxNoPadding">
-        <fa-icon class="backButton" [icon]="['fa', 'chevron-circle-left']"></fa-icon>
+        <fa-icon class="backButton" (click)="back.emit()" [icon]="['fa', 'chevron-circle-left']"></fa-icon>
       </div>
       <div class="col boxNoPadding">
         <h5 class="card-title onTheLeftTitles">{{formInfo.basicFormInfo.cardTitle}}</h5>
