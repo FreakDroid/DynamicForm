@@ -8,7 +8,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class DynamicFormComponent implements OnInit {
 
-  @Output() onSubmit = new EventEmitter();
+  @Output() submit = new EventEmitter();
+  @Output() back = new EventEmitter();
   @Input() formInfo: any = {};
   form: FormGroup;
 
@@ -20,15 +21,12 @@ export class DynamicFormComponent implements OnInit {
     for (const f of this.formInfo.fields) {
       if (f.type === 'switchToggleField' || f.type === 'switchToggleFieldWithBox') {
         for (const k of f.subFields) {
-          console.log('the K', k),
           fieldsCtrls[k.name] = new FormControl(k.value || '', this.createValidators(k));
         }
       } else if (f.type === 'radioButtonToggle') {
-        // console.log(f.subFields);
         fieldsCtrls[f.name] = new FormControl(f.value || '', this.createValidators(f));
         for (const c of f.subFields) {
           for (const l of c.group.controls) {
-            // console.log(l);
             fieldsCtrls[l.name] = new FormControl(l.value || '', this.createValidators(l));
           }
         }
@@ -47,11 +45,8 @@ export class DynamicFormComponent implements OnInit {
 
 
   private createValidators(param) {
-    const { required, minLength } = param;
-    console.log('my param ', param);
-    console.log('my require ', required);
+    const { required, minLength, pattern } = param;
     const validators = [];
-
     if (required) {
       validators.push(Validators.required);
     }
@@ -59,6 +54,11 @@ export class DynamicFormComponent implements OnInit {
     if (minLength) {
       validators.push(Validators.minLength(minLength));
     }
+
+    if (pattern) {
+      validators.push(Validators.pattern(pattern));
+    }
+
     return validators;
   }
 }

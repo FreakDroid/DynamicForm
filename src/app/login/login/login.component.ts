@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
-import {MustMatch} from '../../create-account/_helper/must-match.validator';
 import {Router} from '@angular/router';
+import { LoginServiceService } from '../login-service/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   login: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginServiceService) {
   }
 
   get f() { return this.login.controls; }
@@ -25,5 +25,9 @@ export class LoginComponent implements OnInit {
 
   goToCreateAccount() {
     this.router.navigate(['/create-account']);
+  }
+
+  logMe(formValue) {
+    this.loginService.login();
   }
 }

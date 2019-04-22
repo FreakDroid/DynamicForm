@@ -1,7 +1,7 @@
 <div class="form-group" [formGroup]="form">
   <label class="form-control-label" [attr.for]="field.label"
          *ngIf="field.type !== 'switchToggleField' && field.type !== 'switchToggleFieldWithBox'
-         && field.type !== 'textboxIncreaseDecrease'">
+         && field.type !== 'textboxIncreaseDecrease' && field.type !== 'link'">
     {{field.label}}
   </label>
   <div class="input-group" [ngSwitch]="field.type">
@@ -15,6 +15,7 @@
     </app-switch-toggle-field>
 
 
+    <app-link *ngSwitchCase="'link'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-link>
     <div class="dynamicForm-maxSize switch-box">
       <div class="dynamicForm-maxSize fa-pull-left">
         <label class="form-control-label mid-size" [attr.for]="field.label"
@@ -40,7 +41,7 @@
                  [form]="form" [field]="thisField"></app-btradio>
 
     <app-sradio class="dynamicForm-maxSize" *ngSwitchCase="'radioSubmit'" [field]="field"
-                [form]="form"></app-sradio>
+                [form]="form" (onSubmit)="submit.emit()"></app-sradio>
 
     <app-text-box-increase-decrease class="dynamicForm-maxSize" *ngSwitchCase="'textboxIncreaseDecrease'"
                                     [field]="field"

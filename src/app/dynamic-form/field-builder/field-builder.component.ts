@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-field-builder',
@@ -9,6 +9,9 @@ export class FieldBuilderComponent implements OnInit {
 
   @Input() field: any;
   @Input() form: any;
+
+  @Output() submit = new EventEmitter();
+
   showMe = false;
 
   get isValid() { return this.form.controls[this.field.name].valid; }

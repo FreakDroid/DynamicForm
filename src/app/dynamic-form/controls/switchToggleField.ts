@@ -35,6 +35,6 @@ export class SwitchToggleFieldComponent {
   }
 
   onChange(e) {
-    this.showMe = e;
+    this.showMe = !!e;
   }
 }

@@ -1,16 +1,25 @@
 <div class="card transparent-me">
   <div class="card-body">
-    <h5 class="card-title">{{formInfo.basicFormInfo.cardTitle}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted underline">{{formInfo.basicFormInfo.cardSubtitle}}</h6>
-    <form (ngSubmit)="onSubmit.emit(this.form.value)" [formGroup]="form" class="form-horizontal">
+
+    <div class="row underline boxNoMargin">
+      <div class="col boxNoPadding">
+        <fa-icon class="backButton" (click)="back.emit()" [icon]="['fa', 'chevron-circle-left']"></fa-icon>
+      </div>
+      <div class="col boxNoPadding">
+        <h5 class="card-title onTheLeftTitles">{{formInfo.basicFormInfo.cardTitle}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted onTheLeftTitles">{{formInfo.basicFormInfo.cardSubtitle}}</h6>
+      </div>
+    </div>
+    <form (ngSubmit)="submit.emit(this.form.value)" [formGroup]="form" class="form-horizontal">
       <div *ngFor="let field of formInfo.fields">
-        <app-field-builder [field]="field" [form]="form"></app-field-builder>
+        <app-field-builder [field]="field" [form]="form" (submit)="submit.emit(this.form.value)"></app-field-builder>
       </div>
 
-        <div class="form-group text-center button-login-margin">
-          <button type="submit" class="btn btn-blue mb-2 margin-right-btn"  >Back</button>
-          <button type="submit" class="btn btn-green mb-2 ">Continue</button>
-        </div>
+      <div class="form-group text-center button-login-margin" *ngIf="formInfo.basicFormInfo.button.showButton">
+        <button type="submit" class="btn btn-green mb-2 "
+                [disabled]="!form.valid">{{formInfo.basicFormInfo.button.buttonValue ? formInfo.basicFormInfo.button.buttonValue :
+          'Continue' }}</button>
+      </div>
     </form>
   </div>
 </div>

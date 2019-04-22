@@ -1,9 +1,20 @@
 <div class="card transparent-me">
-  <div class="card-body">
-    <h5 class="card-title">Log in</h5>
-    <h6 class="card-subtitle mb-2 text-muted underline"></h6>
 
-    <form [formGroup]="login">
+  <div class="card-body">
+
+    <div class="row underline boxNoMargin">
+      <div class="col boxNoPadding">
+          <fa-icon class="backButton" [icon]="['fa', 'chevron-circle-left']"></fa-icon>
+      </div>
+      <div class="col boxNoPadding">
+        <h5 class="card-title onTheLeftTitles">Log in</h5>
+        <h6 class="card-subtitle mb-2 text-muted onTheLeftTitles">Lorem ipsum</h6>
+      </div>
+    </div>
+
+
+
+    <form [formGroup]="login" (ngSubmit)="logMe(this.login.value)">
       <div class="form-group-error">
         <div class="text-center errorMessage">
           <span>Invalid username and/or password</span>
@@ -13,7 +24,7 @@
         <label class="form-control-label">
           Username
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="userName">
           <fa-icon *ngIf="(f.userName.errors?.required || f.userName.errors?.minlength)" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
@@ -23,7 +34,7 @@
         <label class="form-control-label" for="password">
           Password
         </label>
-        <div class="input-group">
+        <div class="dynamicForm-maxSize">
           <input class="form-control" formControlName="password" id="password" type="password">
           <fa-icon *ngIf="f.password.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>

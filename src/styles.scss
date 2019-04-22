@@ -3,7 +3,7 @@ body {
   /*background: red;*/
 
 
-  .card-title{
+  .card-title {
     color: #029DE9;
   }
 
@@ -11,7 +11,24 @@ body {
     color: #413D3D;
   }
 
-  .margin-right-btn{
+  .onTheLeftTitles {
+    display: flex;
+    justify-content: flex-end
+  }
+
+  .boxNoMargin {
+    margin: 0;
+  }
+
+  .boxNoPadding {
+    padding: 0;
+  }
+
+  .file-container[_ngcontent-c6] {
+    height: 17rem !important;
+  }
+
+  .margin-right-btn {
     margin-right: 13px;
   }
 
@@ -29,37 +46,37 @@ body {
     border-radius: 25px;
   }
 
-  .transparent-me{
+  .transparent-me {
     background-color: transparent;
   }
 
-  .errorMessage{
+  .errorMessage {
     background: #FF4B4B;
     border-radius: 25px;
     color: white;
   }
 
-  .form-group-error{
+  .form-group-error {
     margin-top: 1rem;
     margin-bottom: 0;
   }
 
-  .forgot-password{
+  .forgot-password {
     margin-top: -19px;
     color: #9D9D9D !important;
   }
 
-  .button-login-margin{
+  .button-login-margin {
     margin-top: 3rem;
   }
 
-  input{
-    -webkit-box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
-    -moz-box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
-    box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
+  input {
+    -webkit-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
+    -moz-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
+    box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
   }
 
-  .dynamicForm-maxSize{
+  .dynamicForm-maxSize {
     width: 100%;
   }
 
@@ -68,7 +85,7 @@ body {
     display: inline;
   }
 
-  .textbox-decrease-increase{
+  .textbox-decrease-increase {
     width: 3rem !important;
     display: inline !important;
   }
@@ -89,7 +106,7 @@ body {
   border: none;
   width: 45rem; //22
 
-  .underline{
+  .underline {
     border-bottom: 2px solid #029FE9;
   }
 
@@ -103,12 +120,21 @@ body {
     color: #029DE9;
   }
 
+  .no-position {
+    position: inherit !important;
+  }
 
-  fa-icon {
+  .form-group fa-icon {
     color: red;
     float: right;
     margin-top: -31px;
     margin-right: 11px;
+  }
+
+  .boxNoMargin fa-icon {
+    font-size: 2rem;
+    vertical-align: bottom;
+    color: #D0CDCD;
   }
 
   .borderRadius {
@@ -117,45 +143,45 @@ body {
     color: #413D3D;
     border-radius: 10px !important;
 
-    &:first-child{
+    &:first-child {
       margin: 0;
     }
   }
 
-  .file-container{
+  .file-container {
     width: 100% !important;
     border: 1px solid white;
     border-radius: 5px;
-    -webkit-box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
-    -moz-box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
-    box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
+    -webkit-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
+    -moz-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
+    box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
     background: white !important;
 
-    .image-preview[_ngcontent-c5]{
+    .image-preview[_ngcontent-c5] {
       height: 100%;
     }
 
   }
 
-  .file-button[_ngcontent-c5], .image-preview[_ngcontent-c5], .secondary-button[_ngcontent-c5]{
+  .file-button[_ngcontent-c5], .image-preview[_ngcontent-c5], .secondary-button[_ngcontent-c5] {
     background: white !important;
   }
 
-  .switch-style{
+  .switch-style {
     display: inline-block;
     padding-left: 47px;
   }
 
-  .mid-size{
+  .mid-size {
     width: 50%;
   }
 
-  .switch-box{
+  .switch-box {
     background: #F1F1F1;
     border-radius: 6px;
-    -webkit-box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
-    -moz-box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
-    box-shadow: -3px 3px 28px 0px rgba(229,229,229,1);
+    -webkit-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
+    -moz-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
+    box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
     margin-top: 18px;
 
     .switch[_ngcontent-c5] {
@@ -166,9 +192,9 @@ body {
       }
     }
 
-    input{
+    input {
       width: 90%;
-      margin-bottom: 1rem ;
+      margin-bottom: 1rem;
       margin-left: 1.8rem;
       margin-right: 1.8rem;
 
@@ -177,7 +203,7 @@ body {
       }
     }
 
-    label{
+    label {
       margin-left: 1.8rem;
       margin-right: 1.8rem;
 
