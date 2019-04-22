@@ -28,6 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   logMe(formValue) {
-    this.loginService.login(formValue);
+    this.loginService.login();
   }
 }
