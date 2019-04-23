@@ -9,16 +9,16 @@ import { LoginServiceService } from '../login-service/login-service.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  login: FormGroup;
+  loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginServiceService) {
   }
 
-  get f() { return this.login.controls; }
+  get f() { return this.loginForm.controls; }
 
   ngOnInit() {
-    this.login = this.formBuilder.group({
-        userName: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    this.loginForm = this.formBuilder.group({
+        login: new FormControl('', [Validators.required, Validators.minLength(8)]),
         password: new FormControl('', [Validators.required, Validators.minLength(8)])
       });
   }
@@ -28,6 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   logMe(formValue) {
-    this.loginService.login();
+     this.loginService.loginService(formValue);
   }
 }
