@@ -14,7 +14,7 @@
 
 
 
-    <form [formGroup]="login" (ngSubmit)="logMe(this.login.value)">
+    <form [formGroup]="loginForm" (ngSubmit)="logMe(this.loginForm.value)">
       <div class="form-group-error">
         <div class="text-center errorMessage">
           <span>Invalid username and/or password</span>
@@ -25,8 +25,8 @@
           Username
         </label>
         <div class="dynamicForm-maxSize">
-          <input class="form-control" formControlName="userName">
-          <fa-icon *ngIf="(f.userName.errors?.required || f.userName.errors?.minlength)" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+          <input class="form-control" formControlName="login">
+          <fa-icon *ngIf="(f.login.errors?.required || f.login.errors?.minlength)" [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
 
       <div class="form-group text-center button-login-margin">
         <button type="submit" class="btn btn-blue mb-2 margin-right" (click)="goToCreateAccount()">Create Account</button>
-        <button type="submit" class="btn btn-green mb-2 " [disabled] = "!login.valid">Log in</button>
+        <button type="submit" class="btn btn-green mb-2 " [disabled] = "!loginForm.valid">Log in</button>
       </div>
     </form>
 
