@@ -10,10 +10,12 @@ import {DynamicFormModel} from '../../model/DynamicForm.model';
 })
 export class FormQuestionContainerComponent implements OnInit {
 
-  public form: FormGroup;
+  form: FormGroup;
   unsubcribe: any;
 
-  public formInfo: any;
+  formInfo: any;
+
+  filtersLoaded: Promise<boolean>;
 
   ngOnInit() {
   }
@@ -26,10 +28,13 @@ export class FormQuestionContainerComponent implements OnInit {
         const { basicFormInfo, fields, next, prev } = res.data;
 
         const jsonForm = { basicFormInfo, fields};
+        this.formInfo = jsonForm;
         this.form = new FormGroup({
           fields: new FormControl(JSON.stringify(this.formInfo))
         });
         console.log(jsonForm);
+
+        this.filtersLoaded = Promise.resolve(true);
       },
       error => {
         console.log('error', error);
