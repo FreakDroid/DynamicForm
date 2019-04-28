@@ -24,7 +24,7 @@ export class CreateAccountService {
     formValue.hearAboutFolionet = 1;
     formValue.investmentExperience = 1;
     formValue.investmentObjective = 1;
-    formValue._toke = localStorage.getItem('token');
+    formValue._token = localStorage.getItem('token');
     const payload = Utils.createHttpParams(formValue);
     console.log(payload);
 

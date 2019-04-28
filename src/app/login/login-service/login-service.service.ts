@@ -17,9 +17,8 @@ export class LoginServiceService {
 
   loginService(formValue) {
     const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
-
+    formValue._token = localStorage.getItem('token');
     const payload = Utils.createHttpParams(formValue);
-    formValue._toke = localStorage.getItem('token');
     return this.http.post(this.URL + 'user/login', payload, {headers: HEADERS});
   }
 }
