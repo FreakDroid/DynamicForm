@@ -15,6 +15,6 @@ export class TokenService {
 
   getToken() {
     const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
-    return this.http.get<Token>(this.URL + 'token.model.ts', {headers: HEADERS});
+    return this.http.get<Token>(this.URL + 'token', {headers: HEADERS});
   }
 }

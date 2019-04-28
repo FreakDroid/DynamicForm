@@ -24,16 +24,16 @@ export class CreateAccountComponent implements OnInit {
 
   ngOnInit() {
     this.createAccount = this.formBuilder.group({
-        userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+        username: new FormControl('', [Validators.required, Validators.minLength(4)]),
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+        password_confirmation: new FormControl('', [Validators.required, Validators.minLength(6)]),
         firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
         middleName: new FormControl('', Validators.minLength(3)),
         lastName: new FormControl('', [Validators.required, Validators.minLength(3)])
       },
       {
-        validator: MustMatch('password', 'confirmPassword')
+        validator: MustMatch('password', 'password_confirmation')
       });
   }
 
@@ -47,13 +47,14 @@ export class CreateAccountComponent implements OnInit {
     this.tokenService.getToken().subscribe(res => {
       const token = res && res.data && res.data.token;
       console.log(token);
-      localStorage.setItem('token.model.ts', token);
+      localStorage.setItem('token', token);
       this.createAccountService.register(formValue).subscribe(resCreateAccount => {
           console.log(resCreateAccount);
           // @ts-ignore
           const ticket = resCreateAccount && resCreateAccount.data.user.ticket;
           localStorage.setItem('ticket', ticket);
           // You should redirect to dynamic form.
+          this.router.navigate(['/dynamic']);
         },
         errorCreateAccount => {
           console.log('error creating account', errorCreateAccount);

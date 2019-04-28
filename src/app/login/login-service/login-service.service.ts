@@ -4,6 +4,7 @@ import {Token} from '../../model/token.model';
 
 // @ts-ignore
 import * as data from '../../../assets/config.json';
+import {Utils} from '../../util/Utils';
 
 @Injectable({
   providedIn: 'root'
@@ -15,44 +16,10 @@ export class LoginServiceService {
   }
 
   loginService(formValue) {
-    try {
-      const {login, password} = formValue;
-      const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
+    const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
 
-
-      this.http.get<Token>(this.URL + 'token.model.ts', {headers: HEADERS}).subscribe(res => {
-          const token = res && res.data && res.data.token;
-          console.log(token);
-
-
-          const payload = new HttpParams()
-            .set('login', login)
-            .set('password', password)
-            .set('_token', token);
-
-          console.log(payload);
-
-          let body = `login=${login}&password=${password}&_token=${token}`;
-
-          this.http.post(this.URL + 'user/login', payload, {headers: HEADERS}).subscribe(loginResponse => {
-              console.log('loggin me');
-              console.log(loginResponse);
-              //If everything went ok
-              localStorage.setItem('token.model.ts', token);
-              return true;
-            },
-            loginError => {
-              console.log('login error', loginError);
-              return loginError;
-            });
-        },
-        tokenError => {
-          console.log('login error', tokenError);
-          return tokenError;
-        });
-    } catch (e) {
-      throw e;
-    }
+    const payload = Utils.createHttpParams(formValue);
+    formValue._toke = localStorage.getItem('token');
+    return this.http.post(this.URL + 'user/login', payload, {headers: HEADERS});
   }
-
 }

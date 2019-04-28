@@ -17,9 +17,9 @@
           Username
         </label>
         <div class="dynamicForm-maxSize">
-          <input class="form-control" formControlName="userName">
+          <input class="form-control" formControlName="username">
           <fa-icon class="no-position" class="no-position"
-                   *ngIf="(f.userName.errors?.required || f.userName.errors?.minlength)"
+                   *ngIf="(f.username.errors?.required || f.username.errors?.minlength)"
                    [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
@@ -53,12 +53,12 @@
         <a class="fa-pull-right mustMatchMessage text-center">Min 6 Characters</a>
       </div>
       <div class="form-group">
-        <label class="form-control-label" for="confirmPassword">
+          <label class="form-control-label" for="password_confirmation">
           Confirm Password
         </label>
         <div class="dynamicForm-maxSize">
-          <input class="form-control" formControlName="confirmPassword" id="confirmPassword" type="password">
-          <fa-icon class="no-position" class="no-position" *ngIf="f.confirmPassword.errors?.required"
+          <input class="form-control" formControlName="password_confirmation" id="password_confirmation" type="password">
+          <fa-icon class="no-position" class="no-position" *ngIf="f.password_confirmation.errors?.required"
                    [icon]="['fa', 'exclamation-circle']"></fa-icon>
         </div>
       </div>
