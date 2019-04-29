@@ -65,13 +65,13 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   }
 
   back() {
-    console.log('back', this.prev);
-
-    if (this.prev === 0) {
+    console.log('back', this.current);
+    const { step, view } = this.current;
+    if (step === 1 && view === 1) {
       // Redirect to login
       this.router.navigate(['']);
     } else {
-      this.subscription.push(this.formService.back(this.prev).subscribe(rest => {
+      this.subscription.push(this.formService.back(this.current).subscribe(rest => {
           console.log(rest);
           this.fillForm(rest);
         },

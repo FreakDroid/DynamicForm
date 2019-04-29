@@ -28,8 +28,6 @@ export class FormQuestionContainerService {
     return this.http.post<DynamicFormModel>(this.URL + 'onboarding/check', payload, {headers: HEADERS});
   }
 
-
-
   saveValue(formValue) {
     const HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-Api-Token', data.xapitoken);
