@@ -54,7 +54,7 @@ export class CreateAccountComponent implements OnInit {
           const ticket = resCreateAccount && resCreateAccount.data.user.ticket;
           localStorage.setItem('ticket', ticket);
           // You should redirect to dynamic form.
-          this.router.navigate(['/dynamic']);
+          this.router.navigate(['']);
         },
         errorCreateAccount => {
           console.log('error creating account', errorCreateAccount);
