@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
 
 @Component({
   selector: 'app-switch-toggle-field',
@@ -10,7 +10,7 @@ import {FormGroup} from '@angular/forms';
           {{field.label}}
         </label>
         <ui-switch class="align-middle switch-style"
-                   (change)="onChange($event)"></ui-switch>
+                   (change)="onChange($event)" [formControlName]="field.name"></ui-switch>
       </div>
 
       <div class="input-group" *ngFor="let subField of field?.subFields">
@@ -20,10 +20,12 @@ import {FormGroup} from '@angular/forms';
           </label>
           <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="subField"
                        [form]="form"></app-textbox>
+          <app-dropdown class="dynamicForm-maxSize" *ngSwitchCase="'dropdown'" [field]="subField" [form]="form"></app-dropdown>
         </div>
       </div>
     </div>
-  `
+  `,
+  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class SwitchToggleFieldComponent {
   @Input() field: any = {};

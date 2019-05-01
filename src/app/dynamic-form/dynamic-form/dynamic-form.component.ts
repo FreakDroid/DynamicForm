@@ -20,6 +20,7 @@ export class DynamicFormComponent implements OnInit {
     const fieldsCtrls = {};
     for (const f of this.formInfo.fields) {
       if (f.type === 'switchToggleField' || f.type === 'switchToggleFieldWithBox') {
+        fieldsCtrls[f.name] = new FormControl(f.value || '', this.createValidators(f));
         for (const k of f.subFields) {
           fieldsCtrls[k.name] = new FormControl(k.value || '', this.createValidators(k));
         }

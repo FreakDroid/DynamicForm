@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms';
-import {forEach} from '@angular/router/src/utils/collection';
 
 // text,email,tel,textarea,password,
 @Component({
@@ -22,6 +21,7 @@ import {forEach} from '@angular/router/src/utils/collection';
               </label>
               <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="control"
                            [form]="form"></app-textbox>
+              <app-dropdown class="dynamicForm-maxSize" *ngSwitchCase="'dropdown'" [field]="control" [form]="form"></app-dropdown>
             </div>
           </div>
         </div>
