@@ -20,6 +20,7 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
               </label>
               <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="control"
                            [form]="form"></app-textbox>
+              <app-dropdown class="dynamicForm-maxSize" *ngSwitchCase="'dropdown'" [field]="control" [form]="form"></app-dropdown>
             </div>
           </div>
         </div>

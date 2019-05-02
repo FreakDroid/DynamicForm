@@ -31,6 +31,9 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log('error', error);
+        if (error.status === 403) {
+          this.router.navigate(['/validate']);
+        }
       }
     ));
 

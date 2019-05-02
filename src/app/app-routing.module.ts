@@ -6,6 +6,7 @@ import {FormQuestionContainerComponent} from './form-question-container/form-que
 import {
   AuthGuardService as AuthGuard
 } from './auth/auth-guard.service';
+import {ValidateEmailComponent} from './validate-email/validate-email.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
     path: 'dynamic',
     component: FormQuestionContainerComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'validate',
+    component:  ValidateEmailComponent
   }
 ];
 
