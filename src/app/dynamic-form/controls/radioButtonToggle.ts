@@ -38,39 +38,36 @@ export class RadioButtonToggleComponent implements OnInit{
   constructor() {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     console.log(this.field.name);
     console.log(this.field);
     console.log('this.form.controls[this.field.name]', this.form.controls);
+    if (this.field.value != '') {
+      this.selected(this.field.value);
+    }
   }
 
   get getThisField() { return this.form.controls[this.field.name]; }
 
   selected(e) {
     this.showMe = e;
-
     const groupToDisable = this.field.subFields.filter(group => group.group.value != e);
-
     const groupToAble = this.field.subFields.filter(group => group.group.value == e);
 
-    console.log(groupToDisable.length);
+
     for (const toDisable of groupToDisable) {
       for (const itemD of toDisable.group.controls) {
         this.form.controls[itemD.name].disable();
         if (itemD.type == 'radio') {
-          console.log('radio disabled');
           this.form.controls[itemD.name].disable();
         }
       }
     }
 
-
-
     for (const toAble of groupToAble) {
       for (const itemE of toAble.group.controls) {
         this.form.controls[itemE.name].enable();
         if (itemE.type == 'radio') {
-          console.log('radio disabled');
           this.form.controls[itemE.name].enable();
         }
       }

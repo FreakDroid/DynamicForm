@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
 
 @Component({
@@ -27,13 +27,22 @@ import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
-export class SwitchToggleFieldComponent {
+export class SwitchToggleFieldComponent implements OnInit {
   @Input() field: any = {};
   @Input() form: FormGroup;
   showMe = false;
 
   constructor() {
 
+  }
+
+  ngOnInit(): void {
+    console.log(this.field.name);
+    console.log(this.field);
+    console.log('this.form.controls[this.field.name]', this.form.controls);
+    if (this.field.value != '') {
+      this.onChange(this.field.value);
+    }
   }
 
   onChange(e) {
