@@ -22,6 +22,7 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
               <app-textbox class="dynamicForm-maxSize" *ngSwitchCase="'text'" [field]="control"
                            [form]="form"></app-textbox>
               <app-dropdown class="dynamicForm-maxSize" *ngSwitchCase="'dropdown'" [field]="control" [form]="form"></app-dropdown>
+              <app-radio class="dynamicForm-maxSize" *ngSwitchCase="'radio'" [field]="control" [form]="form"></app-radio>
             </div>
           </div>
         </div>
@@ -46,21 +47,33 @@ export class RadioButtonToggleComponent implements OnInit{
   get getThisField() { return this.form.controls[this.field.name]; }
 
   selected(e) {
-    console.log(e);
     this.showMe = e;
 
     const groupToDisable = this.field.subFields.filter(group => group.group.value != e);
 
     const groupToAble = this.field.subFields.filter(group => group.group.value == e);
 
-    for (const itemD of groupToDisable[0].group.controls) {
-      console.log(itemD);
-      console.log(this.form.controls[itemD.name]);
-
-      this.form.controls[itemD.name].disable();
+    console.log(groupToDisable.length);
+    for (const toDisable of groupToDisable) {
+      for (const itemD of toDisable.group.controls) {
+        this.form.controls[itemD.name].disable();
+        if (itemD.type == 'radio') {
+          console.log('radio disabled');
+          this.form.controls[itemD.name].disable();
+        }
+      }
     }
-    for (const itemE of groupToAble[0].group.controls) {
-      this.form.controls[itemE.name].enable();
+
+
+
+    for (const toAble of groupToAble) {
+      for (const itemE of toAble.group.controls) {
+        this.form.controls[itemE.name].enable();
+        if (itemE.type == 'radio') {
+          console.log('radio disabled');
+          this.form.controls[itemE.name].enable();
+        }
+      }
     }
   }
 }
