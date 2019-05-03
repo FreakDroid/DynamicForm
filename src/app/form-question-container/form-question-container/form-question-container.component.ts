@@ -58,6 +58,15 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
     dynamicFormValue.view = this.current.view;
     console.log(dynamicFormValue);
 
+    const file = dynamicFormValue && dynamicFormValue.selfie;
+    console.log(file);
+
+    if (file) {
+      console.log(file[0]);
+      dynamicFormValue.selfie = file[0].preview;
+    }
+
+    console.log(dynamicFormValue);
     this.subscription.push(this.formService.saveValue(dynamicFormValue).subscribe(rest => {
       console.log(rest);
       this.fillForm(rest);
