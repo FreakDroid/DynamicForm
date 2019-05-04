@@ -13,7 +13,7 @@ import { LoginModule } from './login/login.module';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 import { FormQuestionContainerModule} from './form-question-container/form-question-container.module';
 import { ValidateEmailModule } from './validate-email/validate-email.module';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { ValidateEmailModule } from './validate-email/validate-email.module';
     LoginModule,
     DynamicFormModule,
     FormQuestionContainerModule,
-    ValidateEmailModule
+    ValidateEmailModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import {FormQuestionContainerService} from '../form-question-container.service';
 import {DynamicFormModel} from '../../model/DynamicForm.model';
 import { Router } from '@angular/router';
 import {Subscription} from 'rxjs';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-form-question-container',
@@ -23,7 +24,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  constructor(private formService: FormQuestionContainerService, private router: Router) {
+  constructor(private formService: FormQuestionContainerService, private router: Router, private spinner: NgxSpinnerService) {
    this.subscription.push(this.formService.checkStep().subscribe((res: DynamicFormModel) => {
         console.log(res);
         // @ts-ignore
@@ -54,6 +55,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(dynamicFormValue) {
+    this.spinner.show();
     dynamicFormValue.step = this.current.step;
     dynamicFormValue.view = this.current.view;
     console.log(dynamicFormValue);
@@ -70,25 +72,29 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
     this.subscription.push(this.formService.saveValue(dynamicFormValue).subscribe(rest => {
       console.log(rest);
       this.fillForm(rest);
+      this.spinner.hide();
       },
       error => {
-
+        this.spinner.hide();
       }));
   }
 
   back() {
+    this.spinner.show();
     console.log('back', this.current);
     const { step, view } = this.current;
     if (step === 1 && view === 1) {
       // Redirect to login
+      this.spinner.hide();
       this.router.navigate(['']);
     } else {
       this.subscription.push(this.formService.back(this.current).subscribe(rest => {
           console.log(rest);
           this.fillForm(rest);
+          this.spinner.hide();
         },
         error => {
-
+          this.spinner.hide();
         }));
     }
   }

@@ -4,6 +4,7 @@ import {MustMatch} from '../_helper/must-match.validator';
 import {Router} from '@angular/router';
 import {CreateAccountService} from '../create-account.service';
 import {TokenService} from '../../token/token.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CreateAccountComponent implements OnInit {
   createAccount: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private createAccountService: CreateAccountService,
-              private tokenService: TokenService) {
+              private tokenService: TokenService, private spinner: NgxSpinnerService) {
   }
 
   get f() {
@@ -42,6 +43,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   submit(formValue) {
+    this.spinner.show();
     console.log(formValue);
     // First get the token;
     this.tokenService.getToken().subscribe(res => {
@@ -54,12 +56,15 @@ export class CreateAccountComponent implements OnInit {
           const ticket = resCreateAccount && resCreateAccount.data.user.ticket;
           localStorage.setItem('ticket', ticket);
           // You should redirect to dynamic form.
+          this.spinner.hide();
           this.router.navigate(['/validate']);
         },
         errorCreateAccount => {
           console.log('error creating account', errorCreateAccount);
+          this.spinner.hide();
         });
     }, error => {
+      this.spinner.hide();
     });
   }
 

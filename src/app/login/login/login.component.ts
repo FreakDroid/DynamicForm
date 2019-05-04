@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {LoginServiceService} from '../login-service/login-service.service';
 import {TokenService} from '../../token/token.service';
 import {Subscription} from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginServiceService,
-              private tokenService: TokenService) {
+              private tokenService: TokenService, private spinner: NgxSpinnerService) {
   }
 
   get f() {
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   logMe(formValue) {
+    this.spinner.show();
     this.error = false;
     this.subscriptions = this.tokenService.getToken().subscribe(res => {
       const token = res && res.data && res.data.token;
@@ -51,12 +53,14 @@ export class LoginComponent implements OnInit, OnDestroy {
             const ticket = resLogin && resLogin.data.Ticket; // Tipo no debe ser caps
             localStorage.setItem('ticket', ticket);
             // You should redirect to dynamic form.
+            this.spinner.hide();
             this.router.navigate(['/dynamic']);
           }
         },
         errorLogin => {
           console.log('error creating account', errorLogin);
           this.error = true;
+          this.spinner.hide();
         });
     }, error => {
     });
