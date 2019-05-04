@@ -114,6 +114,11 @@ body {
       color: #008BC8 !important;
       font-size: 5em !important;
     }
+
+    .exactFit {
+      white-space:pre-wrap;
+    }
+
   }
 
 }
@@ -125,6 +130,7 @@ body {
   margin-bottom: 10px; /* Added */
   border: none;
   width: 45rem; //22
+
 
   .underline {
     border-bottom: 2px solid #029FE9;

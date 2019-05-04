@@ -63,7 +63,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
 
     if (file) {
       console.log(file[0]);
-      dynamicFormValue.selfie = file[0].preview;
+      dynamicFormValue.selfie = file[0].preview.split(',')[1];
     }
 
     console.log(dynamicFormValue);

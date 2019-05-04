@@ -2,15 +2,15 @@
   <div class="card-body">
 
     <div class="row underline boxNoMargin">
-      <div class="col boxNoPadding">
+      <div class="col-2 boxNoPadding">
         <fa-icon class="backButton" (click)="back.emit()" [icon]="['fa', 'chevron-circle-left']"></fa-icon>
       </div>
-      <div class="col boxNoPadding">
+      <div class="col-10 boxNoPadding">
         <h5 class="card-title onTheLeftTitles">{{formInfo.basicFormInfo.cardTitle}}</h5>
         <h6 class="card-subtitle mb-2 text-muted onTheLeftTitles">{{formInfo.basicFormInfo.cardSubtitle}}</h6>
       </div>
     </div>
-    <form (ngSubmit)="submitForm.emit(this.form.value)" [formGroup]="form" class="form-horizontal">
+    <form (ngSubmit)="submitForm.emit(this.form.value)" [formGroup]="form" class="form-horizontal exactFit">
       <div *ngFor="let field of formInfo.fields">
         <app-field-builder [field]="field" [form]="form" (submit)="submitForm.emit(this.form.value)"></app-field-builder>
       </div>

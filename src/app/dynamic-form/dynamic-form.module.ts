@@ -50,7 +50,7 @@ const config: InputFileConfig = {
   ],
   exports: [
     DynamicFormComponent,
-    DynamicFormRoutingModule
+    DynamicFormRoutingModule,
   ],
   providers: [
     NgbRadioGroup
