@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Observable} from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +18,14 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class HeaderComponent implements OnInit {
   visible = false;
+  isLoggedIn$: Observable<boolean>;
 
-  constructor() {
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit() {
+    this.isLoggedIn$ = this.auth.isLoggedIn;
   }
-
 
   showMenu() {
     console.log('clicking');

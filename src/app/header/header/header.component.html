@@ -5,7 +5,7 @@
            src="https://www.folionet.com//uploads/general/general_1495409290.png" alt="Folionet">
     </a>
 
-    <button class="btn btn-link" type="button">
+    <button class="btn btn-link" type="button" *ngIf="isLoggedIn$ | async as isLoggedIn">
       <span class="navbar-toggler-icon" (click)="showMenu()"></span>
     </button>
   </nav>
