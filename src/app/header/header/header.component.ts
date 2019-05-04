@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Observable} from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   visible = false;
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -30,5 +31,11 @@ export class HeaderComponent implements OnInit {
   showMenu() {
     console.log('clicking');
     this.visible = !this.visible;
+  }
+
+  logout() {
+    this.visible = false;
+    this.auth.cleanForLogOut();
+    this.router.navigate(['']);
   }
 }

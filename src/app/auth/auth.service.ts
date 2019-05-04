@@ -49,4 +49,9 @@ export class AuthService {
     this.loggedIn.next(false);
     return false;
   }
+
+  public cleanForLogOut() {
+    this.loggedIn.next(false);
+    localStorage.clear();
+  }
 }
