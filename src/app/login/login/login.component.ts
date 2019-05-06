@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
         },
         errorLogin => {
-          console.log('error creating account', errorLogin);
+          console.log('error creating account', errorLogin.error.message);
           this.error = true;
           this.spinner.hide();
         });

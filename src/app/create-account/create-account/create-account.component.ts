@@ -62,11 +62,11 @@ export class CreateAccountComponent implements OnInit {
         },
         errorCreateAccount => {
           console.log('error creating account', errorCreateAccount);
-          this.toastr.error('Error', errorCreateAccount.message);
+          this.toastr.error(errorCreateAccount.error.message, 'Error');
           this.spinner.hide();
         });
     }, error => {
-      this.toastr.error('Error', error.message);
+      this.toastr.error(error.error.message, 'Error');
       this.spinner.hide();
     });
   }

@@ -70,7 +70,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log('error', error);
-        this.toastr.error('Error', error.message);
+        this.toastr.error(error.error.message, 'Error');
         if (error.status === 403) {
           this.router.navigate(['/validate']);
         }
@@ -100,7 +100,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       },
       error => {
 
-        this.toastr.error('Error', error.message);
+        this.toastr.error(error.error.message, 'Error');
         this.spinner.hide();
       }));
   }
@@ -121,7 +121,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
           this.spinner.hide();
         },
         error => {
-          this.toastr.error('Error', error.message);
+          this.toastr.error(error.error.message, 'Error');
           this.spinner.hide();
           this.checkStep();
         }));
