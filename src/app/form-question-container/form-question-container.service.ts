@@ -20,7 +20,6 @@ export class FormQuestionContainerService {
   }
 
   checkStep() {
-
     const HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-Api-Token', data.xapitoken);
     const payload = new HttpParams()
@@ -36,7 +35,7 @@ export class FormQuestionContainerService {
     return this.http.post(this.URL + 'onboarding/save', payload, {headers: HEADERS});
   }
 
-  back(backFormData) {
+  backGoto(backFormData) {
     console.log(backFormData);
     const HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-Api-Token', data.xapitoken);

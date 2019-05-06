@@ -2,8 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {FormQuestionContainerService} from '../form-question-container.service';
 import {DynamicFormModel} from '../../model/DynamicForm.model';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-form-question-container',
@@ -19,29 +23,34 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   // The step where I'm
   current: any;
   prev: any;
+  step: any;
+  view: any;
 
   ngOnInit() {
+    //Changing the URL
+    console.log('llegue a dynamic');
+    this.location.replaceState('/dynamic');
+    this.step = this.route.snapshot.paramMap.get('step');
+    this.view = this.route.snapshot.paramMap.get('view');
+
+    console.log('step', this.step);
+    console.log('step', this.view);
+
+    if (this.step && this.view) {
+      this.current = {step : this.step, view: this.view};
+      this.backGoTo();
+    } else {
+      this.checkStep();
+    }
   }
 
-  constructor(private formService: FormQuestionContainerService, private router: Router) {
-   this.subscription.push(this.formService.checkStep().subscribe((res: DynamicFormModel) => {
-        console.log(res);
-        // @ts-ignore
-        this.fillForm(res);
-      },
-      error => {
-        console.log('error', error);
-        if (error.status === 403) {
-          this.router.navigate(['/validate']);
-        }
-      }
-    ));
+  constructor(private formService: FormQuestionContainerService, private router: Router, private spinner: NgxSpinnerService,
+              private toastr: ToastrService, private route: ActivatedRoute, private location: Location) {
+    // override the route reuse strategy
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
 
-    /* this.unsubcribe = this.form.valueChanges.subscribe((update) => {
-       console.log('llegue');
-       console.log(update);
-       this.formInfo = JSON.parse(update.fields);
-     }); */
   }
 
   onUpload(e) {
@@ -53,33 +62,68 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
     return this.formInfo;
   }
 
+  checkStep() {
+    this.subscription.push(this.formService.checkStep().subscribe((res: DynamicFormModel) => {
+        console.log(res);
+        // @ts-ignore
+        this.fillForm(res);
+      },
+      error => {
+        console.log('error', error);
+        this.toastr.error('Error', error.message);
+        if (error.status === 403) {
+          this.router.navigate(['/validate']);
+        }
+      }
+    ));
+  }
+
   onSubmit(dynamicFormValue) {
+    this.spinner.show();
     dynamicFormValue.step = this.current.step;
     dynamicFormValue.view = this.current.view;
     console.log(dynamicFormValue);
 
+    const file = dynamicFormValue && dynamicFormValue.selfie;
+    console.log(file);
+
+    if (file) {
+      console.log(file[0]);
+      dynamicFormValue.selfie = file[0].preview.split(',')[1];
+    }
+
+    console.log(dynamicFormValue);
     this.subscription.push(this.formService.saveValue(dynamicFormValue).subscribe(rest => {
-      console.log(rest);
-      this.fillForm(rest);
+        console.log(rest);
+        this.fillForm(rest);
+        this.spinner.hide();
       },
       error => {
 
+        this.toastr.error('Error', error.message);
+        this.spinner.hide();
       }));
   }
 
-  back() {
-    console.log('back', this.current);
-    const { step, view } = this.current;
+  backGoTo() {
+    this.spinner.show();
+    console.log('backGoTo', this.current);
+    const {step, view} = this.current;
     if (step === 1 && view === 1) {
       // Redirect to login
+      console.log('entre en el if');
+      this.spinner.hide();
       this.router.navigate(['']);
     } else {
-      this.subscription.push(this.formService.back(this.current).subscribe(rest => {
+      this.subscription.push(this.formService.backGoto(this.current).subscribe(rest => {
           console.log(rest);
           this.fillForm(rest);
+          this.spinner.hide();
         },
         error => {
-
+          this.toastr.error('Error', error.message);
+          this.spinner.hide();
+          this.checkStep();
         }));
     }
   }

@@ -2,6 +2,9 @@
 body {
   /*background: red;*/
 
+  .HeaderFooterMessageMargin {
+    margin-top: 5px !important;
+  }
 
   .card-title {
     color: #029DE9;
@@ -96,7 +99,7 @@ body {
     border-radius: 12px;
   }
 
-  .boxConfirmMail{
+  .boxConfirmMail {
     background: #009EE4;
     -webkit-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
     -moz-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
@@ -104,15 +107,19 @@ body {
     border-radius: 5px;
     margin-top: 4em;
 
-    p{
+    p {
       color: white;
       margin-top: 5px;
       margin-bottom: 15px;
     }
 
-    fa-icon{
+    fa-icon {
       color: #008BC8 !important;
       font-size: 5em !important;
+    }
+
+    .exactFit {
+      white-space: pre-wrap;
     }
   }
 
@@ -125,6 +132,7 @@ body {
   margin-bottom: 10px; /* Added */
   border: none;
   width: 45rem; //22
+
 
   .underline {
     border-bottom: 2px solid #029FE9;
@@ -234,7 +242,7 @@ body {
 
   }
 
-  .mustMatchMessage{
+  .mustMatchMessage {
     margin-top: 10px;
     color: #F7F7F7 !important;
     background: #B3B1B1;

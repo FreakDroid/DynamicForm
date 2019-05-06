@@ -7,7 +7,8 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
   template: `
     <div class="btn-group btn-group-toggle dynamicForm-maxSize radioButtonsInLine" ngbRadioGroup
          [formGroup]="form" [formControlName]="field.name">
-      <label *ngFor="let opt of field.options" ngbButtonLabel class="btn-primary borderRadius dynamicForm-maxSize">
+      <label *ngFor="let opt of field.options" ngbButtonLabel style="white-space:pre-wrap; z-index: 0"
+             class="btn-primary borderRadius dynamicForm-maxSize">
         <input ngbButton type="radio" [value]="opt.key" > {{opt.label}}
       </label>
       <br/>

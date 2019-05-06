@@ -5,7 +5,7 @@
            src="https://www.folionet.com//uploads/general/general_1495409290.png" alt="Folionet">
     </a>
 
-    <button class="btn btn-link" type="button">
+    <button class="btn btn-link" type="button" *ngIf="isLoggedIn$ | async as isLoggedIn">
       <span class="navbar-toggler-icon" (click)="showMenu()"></span>
     </button>
   </nav>
@@ -18,27 +18,27 @@
           </a>
         </li>
         <li>
-          <a href="#">User Information</a>
+          <a (click)="goTo(1,2)">User Information</a>
         </li>
         <li>
-          <a href="#">Contact Information</a>
+          <a (click)="goTo(2,2)">Contact Information</a>
         </li>
         <li>
-          <a href="#">About You</a>
+          <a (click)="goTo(2,2)">About You</a>
         </li>
         <li>
-          <a href="#">Citizenship</a>
+          <a (click)="goTo(4,1)">Citizenship</a>
         </li>
         <li>
-          <a href="#">Investment Profile</a>
+          <a (click)="goTo(5,1)">Investment Profile</a>
         </li>
         <li>
-          <a href="#">Photos</a>
+          <a (click)="goTo(6,1)">Photos</a>
         </li>
         <li>
-          <a href="#">Disclosures</a>
+          <a (click)="goTo(7,1)">Disclosures</a>
         </li>
-        <li class="logout">
+        <li class="logout" (click)="logout()">
           <a href="#">Log Out <fa-icon [icon]="['fa', 'power-off']"></fa-icon></a>
         </li>
       </ul>
