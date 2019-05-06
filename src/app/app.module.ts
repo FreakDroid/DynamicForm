@@ -14,6 +14,8 @@ import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
 import { FormQuestionContainerModule} from './form-question-container/form-question-container.module';
 import { ValidateEmailModule } from './validate-email/validate-email.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     DynamicFormModule,
     FormQuestionContainerModule,
     ValidateEmailModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

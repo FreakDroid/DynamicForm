@@ -5,6 +5,7 @@ import {LoginServiceService} from '../login-service/login-service.service';
 import {TokenService} from '../../token/token.service';
 import {Subscription} from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginServiceService,
-              private tokenService: TokenService, private spinner: NgxSpinnerService) {
+              private tokenService: TokenService, private spinner: NgxSpinnerService, private toastr: ToastrService) {
   }
 
   get f() {
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           // @ts-ignore
           const {error} = resLogin;
           if (error === 403) {
+            this.spinner.hide();
             this.error = true;
           } else {
             // @ts-ignore

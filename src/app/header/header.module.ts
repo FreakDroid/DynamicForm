@@ -4,12 +4,15 @@ import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import {RouterModule} from '@angular/router';
+
 
 @NgModule({
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent
