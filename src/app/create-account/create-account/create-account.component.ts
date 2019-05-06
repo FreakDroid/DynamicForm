@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {CreateAccountService} from '../create-account.service';
 import {TokenService} from '../../token/token.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class CreateAccountComponent implements OnInit {
   createAccount: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private createAccountService: CreateAccountService,
-              private tokenService: TokenService, private spinner: NgxSpinnerService) {
+              private tokenService: TokenService, private spinner: NgxSpinnerService, private toastr: ToastrService) {
   }
 
   get f() {
@@ -61,9 +62,11 @@ export class CreateAccountComponent implements OnInit {
         },
         errorCreateAccount => {
           console.log('error creating account', errorCreateAccount);
+          this.toastr.error('Error', errorCreateAccount.message);
           this.spinner.hide();
         });
     }, error => {
+      this.toastr.error('Error', error.message);
       this.spinner.hide();
     });
   }
