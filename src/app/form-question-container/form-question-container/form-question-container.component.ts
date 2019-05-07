@@ -8,6 +8,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-form-question-container',
@@ -45,7 +46,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   }
 
   constructor(private formService: FormQuestionContainerService, private router: Router, private spinner: NgxSpinnerService,
-              private toastr: ToastrService, private route: ActivatedRoute, private location: Location) {
+              private toastr: ToastrService, private route: ActivatedRoute, private location: Location, private auth: AuthService) {
     // override the route reuse strategy
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
@@ -70,10 +71,15 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log('error', error);
-        this.toastr.error(error.error.message, 'Error');
-        if (error.status === 403) {
+
+        if (error.status == 403 && error.error.redirect == '/waiting_for_approval') {
+          console.log('waiting_for_approval');
+          this.router.navigate(['/waiting_for_approval']);
+        } else if (error.status == 403 && error.error.redirect == '/email_not_verify') {
+          console.log('/validate');
           this.router.navigate(['/validate']);
         }
+        this.toastr.error(error.error.message, 'Error');
       }
     ));
   }
@@ -113,6 +119,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       // Redirect to login
       console.log('entre en el if');
       this.spinner.hide();
+      this.auth.cleanForLogOut();
       this.router.navigate(['']);
     } else {
       this.subscription.push(this.formService.backGoto(this.current).subscribe(rest => {

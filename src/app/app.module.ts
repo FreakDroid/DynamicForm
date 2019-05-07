@@ -16,6 +16,7 @@ import { ValidateEmailModule } from './validate-email/validate-email.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import {RouterModule} from '@angular/router';
+import { WaitingForApprovalModule } from './waiting-for-approval/waiting-for-approval.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {RouterModule} from '@angular/router';
     DynamicFormModule,
     FormQuestionContainerModule,
     ValidateEmailModule,
+    WaitingForApprovalModule,
     NgxSpinnerModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center',

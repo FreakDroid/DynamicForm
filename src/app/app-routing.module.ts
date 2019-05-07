@@ -7,6 +7,7 @@ import {
   AuthGuardService as AuthGuard
 } from './auth/auth-guard.service';
 import {ValidateEmailComponent} from './validate-email/validate-email.component';
+import {WaitingForApprovalComponent} from './waiting-for-approval/waiting-for-approval/waiting-for-approval.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'validate',
     component:  ValidateEmailComponent
+  },
+  {
+    path: 'waiting_for_approval',
+    component:  WaitingForApprovalComponent
   }
 ];
 
