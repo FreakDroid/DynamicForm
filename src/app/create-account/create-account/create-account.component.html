@@ -1,0 +1,102 @@
+<div class="card transparent-me">
+  <div class="card-body">
+
+    <div class="row underline boxNoMargin">
+      <div class="col boxNoPadding">
+        <fa-icon class="backButton" [icon]="['fa', 'chevron-circle-left']" (click)="goBack()"></fa-icon>
+      </div>
+      <div class="col boxNoPadding">
+        <h5 class="card-title onTheLeftTitles">Create Account</h5>
+        <h6 class="card-subtitle mb-2 text-muted onTheLeftTitles">Create Account</h6>
+      </div>
+    </div>
+
+    <form [formGroup]="createAccount" (ngSubmit)="submit(this.createAccount.value)">
+      <div class="form-group">
+        <label class="form-control-label">
+          Username
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="username">
+          <fa-icon class="no-position" class="no-position"
+                   *ngIf="(f.username.errors?.required || f.username.errors?.minlength)"
+                   [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">
+          Email
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="email">
+          <fa-icon class="no-position" class="no-position"
+                   *ngIf="(f.email.errors?.required || f.email.errors?.email)"
+                   [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+      <div class="form-group">
+        <a class="fa-pull-right mustMatchMessage text-center">Min 6 Characters</a>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="password">
+          Password
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="password" id="password" type="password">
+          <fa-icon class="no-position" class="no-position" *ngIf="f.password.errors?.required"
+                   [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <a class="fa-pull-right mustMatchMessage text-center">Min 6 Characters</a>
+      </div>
+      <div class="form-group">
+          <label class="form-control-label" for="password_confirmation">
+          Confirm Password
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="password_confirmation" id="password_confirmation" type="password">
+          <fa-icon class="no-position" class="no-position" *ngIf="f.password_confirmation.errors?.required"
+                   [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="firstName">
+          First Name
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="firstName" id="firstName">
+          <fa-icon class="no-position" *ngIf="f.firstName.errors?.required"
+                   [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="middleName">
+          Middle Name
+        </label>
+        <input class="form-control" formControlName="middleName" id="middleName">
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="lastName">
+          Last Name
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="lastName" id="lastName">
+          <fa-icon class="no-position" *ngIf="f.lastName.errors?.required"
+                   [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-green mb-2 " [disabled]="!createAccount.valid">Confirm identity</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+

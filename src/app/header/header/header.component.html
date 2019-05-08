@@ -1,0 +1,49 @@
+<div class="pos-f-t">
+  <nav class="navbar navbar-expand-sm navbar-light justify-content-between">
+    <a class="navbar-brand" href="#">
+      <img class="logoSize" data-original="https://www.folionet.com//uploads/general/general_1495409290.png"
+           src="https://www.folionet.com//uploads/general/general_1495409290.png" alt="Folionet">
+    </a>
+
+    <button class="btn btn-link" type="button" *ngIf="isLoggedIn$ | async as isLoggedIn">
+      <span class="navbar-toggler-icon" (click)="showMenu()"></span>
+    </button>
+  </nav>
+  <div class="float-right" *ngIf="visible">
+    <div id="sidebar-wrapper" ngClass="">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a (click)="showMenu()">
+            <fa-icon [icon]="['fa', 'times']"></fa-icon>
+          </a>
+        </li>
+        <li>
+          <a (click)="goTo(1,2)">User Information</a>
+        </li>
+        <li>
+          <a (click)="goTo(2,2)">Contact Information</a>
+        </li>
+        <li>
+          <a (click)="goTo(2,2)">About You</a>
+        </li>
+        <li>
+          <a (click)="goTo(4,1)">Citizenship</a>
+        </li>
+        <li>
+          <a (click)="goTo(5,1)">Investment Profile</a>
+        </li>
+        <li>
+          <a (click)="goTo(6,1)">Photos</a>
+        </li>
+        <li>
+          <a (click)="goTo(7,1)">Disclosures</a>
+        </li>
+        <li class="logout" (click)="logout()">
+          <a href="#">Log Out <fa-icon [icon]="['fa', 'power-off']"></fa-icon></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

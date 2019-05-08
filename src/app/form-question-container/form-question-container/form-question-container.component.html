@@ -1,0 +1,4 @@
+<div *ngIf="filtersLoaded | async">
+  <app-dynamic-form [formInfo]="getFields()" (back)="backGoTo()" (submitForm)="onSubmit($event)"></app-dynamic-form>
+</div>
+

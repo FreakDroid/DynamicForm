@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "http://dev-folionet-api.us-east-2.elasticbeanstalk.com/",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

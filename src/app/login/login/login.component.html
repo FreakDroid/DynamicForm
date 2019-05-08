@@ -1,0 +1,51 @@
+<div class="card transparent-me">
+  <div class="card-body">
+
+    <div class="row underline boxNoMargin">
+      <div class="col boxNoPadding">
+      </div>
+      <div class="col boxNoPadding">
+        <h5 class="card-title onTheLeftTitles">Log in</h5>
+      </div>
+    </div>
+
+
+    <form [formGroup]="loginForm" (ngSubmit)="logMe(this.loginForm.value)">
+      <div class="form-group-error" *ngIf="error">
+        <div class="text-center errorMessage">
+          <span>Invalid username and/or password</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">
+          Username
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="login">
+          <fa-icon *ngIf="(f.login.errors?.required || f.login.errors?.minlength)" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="password">
+          Password
+        </label>
+        <div class="dynamicForm-maxSize">
+          <input class="form-control" formControlName="password" id="password" type="password">
+          <fa-icon *ngIf="f.password.errors?.required" [icon]="['fa', 'exclamation-circle']"></fa-icon>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <a class="fa-pull-right forgot-password">Forgot Password?</a>
+      </div>
+
+      <div class="form-group text-center button-login-margin">
+        <button type="submit" class="btn btn-blue mb-2 margin-right" (click)="goToCreateAccount()">Create Account</button>
+        <button type="submit" class="btn btn-green mb-2 " [disabled] = "!loginForm.valid">Log in</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
