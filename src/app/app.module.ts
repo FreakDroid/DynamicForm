@@ -15,8 +15,10 @@ import { FormQuestionContainerModule} from './form-question-container/form-quest
 import { ValidateEmailModule } from './validate-email/validate-email.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
-import {RouterModule} from '@angular/router';
 import { WaitingForApprovalModule } from './waiting-for-approval/waiting-for-approval.module';
+import {HearAboutModule} from './hear-about/hear-about.module';
+import {ExperienceModule} from './experience/experience.module';
+import {InvestmentObjectiveModule} from './investment-objective/investment-objective.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,9 @@ import { WaitingForApprovalModule } from './waiting-for-approval/waiting-for-app
     ValidateEmailModule,
     WaitingForApprovalModule,
     NgxSpinnerModule,
+    HearAboutModule,
+    ExperienceModule,
+    InvestmentObjectiveModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,

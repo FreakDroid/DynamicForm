@@ -29,5 +29,4 @@ export class RadioButtonSubmitComponent {
     this.onSubmit.emit();
   }
 
-
 }

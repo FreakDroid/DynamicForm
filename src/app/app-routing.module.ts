@@ -8,6 +8,9 @@ import {
 } from './auth/auth-guard.service';
 import {ValidateEmailComponent} from './validate-email/validate-email.component';
 import {WaitingForApprovalComponent} from './waiting-for-approval/waiting-for-approval/waiting-for-approval.component';
+import {HearAboutComponent} from './hear-about/hear-about/hear-about.component';
+import {ExperienceComponent} from './experience/experience/experience.component';
+import {InvestmentObjectiveComponent} from './investment-objective/investment-objective/investment-objective.component';
 
 const routes: Routes = [
   {
@@ -35,6 +38,18 @@ const routes: Routes = [
   {
     path: 'waiting_for_approval',
     component:  WaitingForApprovalComponent
+  },
+  {
+    path: 'hear-about-us',
+    component: HearAboutComponent
+  },
+  {
+    path: 'experience',
+    component: ExperienceComponent
+  },
+  {
+    path: 'investment-objective',
+    component: InvestmentObjectiveComponent
   }
 ];
 

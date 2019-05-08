@@ -1,0 +1,48 @@
+<div class="card transparent-me">
+  <div class="card-body">
+
+    <div class="row underline boxNoMargin">
+      <div class="col-2 boxNoPadding">
+        <fa-icon class="backButton" (click)="goback()" [icon]="['fa', 'chevron-circle-left']"></fa-icon>
+      </div>
+      <div class="col-10 boxNoPadding">
+        <h5 class="card-title onTheLeftTitles">How did you hear</h5>
+        <h6 class="card-subtitle mb-2 text-muted onTheLeftTitles">about us</h6>
+      </div>
+    </div>
+
+    <form (ngSubmit)="selected(this.loginForm.value)" [formGroup]="hearAboutUsForm"
+          class="form-horizontal exactFit marginTopLessQuarter">
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="btn-group btn-group-toggle dynamicForm-maxSize radioButtonsInLine" ngbRadioGroup
+               formControlName="hearAboutUs">
+            <label style="white-space:pre-wrap; z-index: 0" ngbButtonLabel
+                   class="btn-primary borderRadius dynamicForm-maxSize">
+              <input ngbButton type="radio" [value]="1" (click)="selected(1)" > I've never invested before
+            </label>
+
+            <label style="white-space:pre-wrap; z-index: 0" ngbButtonLabel
+                   class="btn-primary borderRadius dynamicForm-maxSize">
+              <input ngbButton type="radio" [value]="2" (click)="selected(2)"> I have some but am still learning
+            </label>
+
+
+            <label style="white-space:pre-wrap; z-index: 0" ngbButtonLabel
+                   class="btn-primary borderRadius dynamicForm-maxSize">
+              <input ngbButton type="radio" [value]="3" (click)="selected(3)"> I have pretty solid knowledge
+            </label>
+
+
+            <label style="white-space:pre-wrap; z-index: 0" ngbButtonLabel
+                   class="btn-primary borderRadius dynamicForm-maxSize">
+              <input ngbButton type="radio" [value]="4" (click)="selected(4)"> I am a professional investor
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
