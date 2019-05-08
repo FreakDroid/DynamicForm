@@ -9,6 +9,7 @@ import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {AuthService} from '../../auth/auth.service';
+import {Utils} from '../../util/Utils';
 
 @Component({
   selector: 'app-form-question-container',
@@ -105,8 +106,12 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
         this.spinner.hide();
       },
       error => {
-
-        this.toastr.error(error.error.message, 'Error');
+        if (error.error.error == 400) {
+          const errorsMessages = Utils.transformErrorMessage(error.error.messages_form);
+          this.toastr.error(errorsMessages, 'Error');
+        } else {
+          this.toastr.error(error.error.message, 'Error');
+        }
         this.spinner.hide();
       }));
   }

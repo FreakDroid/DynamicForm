@@ -39,13 +39,33 @@ export class SwitchToggleFieldComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.field.name);
     console.log(this.field);
-    console.log('this.form.controls[this.field.name]', this.form.controls);
+    console.log('this.form.controls[this.field.name]', this.form.controls[this.field.name]);
+    this.form.controls[this.field.name].setValue(false);
     if (this.field.value != '') {
       this.onChange(this.field.value);
+    } else {
+      this.disableEnableControls();
     }
   }
 
   onChange(e) {
     this.showMe = !!e;
+    this.disableEnableControls();
+  }
+
+  disableEnableControls() {
+    const controls = this.field.subFields;
+
+    console.log(controls);
+    if (this.showMe) {
+      for (const toDisable of controls) {
+        console.log(toDisable.name);
+        this.form.controls[toDisable.name].enable();
+      }
+    } else {
+      for (const toAble of controls) {
+        this.form.controls[toAble.name].disable();
+      }
+    }
   }
 }
