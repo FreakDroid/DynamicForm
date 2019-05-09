@@ -9,9 +9,9 @@ export class CreateAccountModel {
   investmentExperience: number;
   investmentObjective: number;
   // @ts-ignore
-  private _token: string;
+   _token: string;
   // @ts-ignore
-  private password_confirmation: string;
+   password_confirmation: string;
 
 
   constructor(email, username, password, firstName, middleName, lastName, hearAboutFolionet, investmentExperience, investmentObjective

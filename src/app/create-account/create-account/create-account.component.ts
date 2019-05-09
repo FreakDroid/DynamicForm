@@ -46,35 +46,6 @@ export class CreateAccountComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  /*
-  submit(formValue) {
-    this.spinner.show();
-    console.log(formValue);
-    // First get the token;
-    this.tokenService.getToken().subscribe(res => {
-      const token = res && res.data && res.data.token;
-      console.log(token);
-      localStorage.setItem('token', token);
-      this.createAccountService.register(formValue).subscribe(resCreateAccount => {
-          console.log(resCreateAccount);
-          // @ts-ignore
-          const ticket = resCreateAccount && resCreateAccount.data.user.ticket;
-          localStorage.setItem('ticket', ticket);
-          // You should redirect to dynamic form.
-          this.spinner.hide();
-          this.router.navigate(['/validate']);
-        },
-        errorCreateAccount => {
-          console.log('error creating account', errorCreateAccount);
-          this.toastr.error(errorCreateAccount.error.message, 'Error');
-          this.spinner.hide();
-        });
-    }, error => {
-      this.toastr.error(error.error.message, 'Error');
-      this.spinner.hide();
-    });
-  } */
-
   submit(formValue) {
     this.spinner.show();
     console.log(formValue);

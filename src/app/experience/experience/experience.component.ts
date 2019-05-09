@@ -20,6 +20,14 @@ export class ExperienceComponent implements OnInit {
     this.hearAboutUsForm = this.formBuilder.group({
       hearAboutUs: new FormControl(''),
     });
+
+    let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+    if (!createAccount) {
+      this.router.navigate(['/create-account']);
+    } else{
+      const investmentExperience = createAccount.investmentExperience;
+      //this.hearAboutUsForm.hearAboutUs = (investmentExperience = 0) ? 0 : investmentExperience;
+    }
   }
 
   selected(e) {
