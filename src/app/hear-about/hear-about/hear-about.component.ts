@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {MemoryDataService} from '../../memory-data/memory-data.service';
+import {CreateAccountModel} from '../../model/createAccount.model';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-hear-about',
@@ -11,7 +14,8 @@ export class HearAboutComponent implements OnInit {
 
   hearAboutUsForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private memoryService: MemoryDataService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.hearAboutUsForm = this.formBuilder.group({
@@ -21,10 +25,14 @@ export class HearAboutComponent implements OnInit {
 
   selected(e) {
     console.log(e);
-    localStorage.setItem('hearAboutFolionet', e);
+    this.spinner.show();
+    let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+    createAccount.hearAboutFolionet = e;
+    this.memoryService.saveCreateAccountState(createAccount);
+    this.spinner.hide();
     this.router.navigate(['/experience']);
   }
   goback() {
-    this.router.navigate(['']);
+    this.router.navigate(['/create-account']);
   }
 }

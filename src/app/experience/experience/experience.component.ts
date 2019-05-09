@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
+import {CreateAccountModel} from '../../model/createAccount.model';
+import {MemoryDataService} from '../../memory-data/memory-data.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-experience',
@@ -10,7 +13,8 @@ import {Router} from '@angular/router';
 export class ExperienceComponent implements OnInit {
   hearAboutUsForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private memoryService: MemoryDataService,
+              private spinner: NgxSpinnerService,) { }
 
   ngOnInit() {
     this.hearAboutUsForm = this.formBuilder.group({
@@ -20,8 +24,12 @@ export class ExperienceComponent implements OnInit {
 
   selected(e) {
     console.log(e);
-    localStorage.setItem('experience', e);
-    this.router.navigate(['/invest-objective']);
+    this.spinner.show();
+    let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+    createAccount.investmentExperience = e;
+    this.memoryService.saveCreateAccountState(createAccount);
+    this.spinner.hide();
+    this.router.navigate(['/investment-objective']);
   }
 
   goback() {

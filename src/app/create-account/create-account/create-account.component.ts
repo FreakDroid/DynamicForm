@@ -6,6 +6,8 @@ import {CreateAccountService} from '../create-account.service';
 import {TokenService} from '../../token/token.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import {MemoryDataService} from '../../memory-data/memory-data.service';
+import {CreateAccountModel} from '../../model/createAccount.model';
 
 
 @Component({
@@ -17,7 +19,8 @@ export class CreateAccountComponent implements OnInit {
   createAccount: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private createAccountService: CreateAccountService,
-              private tokenService: TokenService, private spinner: NgxSpinnerService, private toastr: ToastrService) {
+              private tokenService: TokenService, private spinner: NgxSpinnerService, private toastr: ToastrService,
+              private memoryService: MemoryDataService) {
   }
 
   get f() {
@@ -43,6 +46,7 @@ export class CreateAccountComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  /*
   submit(formValue) {
     this.spinner.show();
     console.log(formValue);
@@ -68,6 +72,22 @@ export class CreateAccountComponent implements OnInit {
     }, error => {
       this.toastr.error(error.error.message, 'Error');
       this.spinner.hide();
+    });
+  } */
+
+  submit(formValue) {
+    this.spinner.show();
+    console.log(formValue);
+    this.tokenService.getToken().subscribe(res => {
+      const token = res && res.data && res.data.token;
+      console.log(token);
+      const createAccount = new CreateAccountModel(formValue.email,
+        formValue.username, formValue.password, formValue.firstName, formValue.middleName, formValue.lastName, 0,
+        0, 0, token, formValue.password_confirmation);
+      this.memoryService.saveCreateAccountState(createAccount);
+      console.log(this.memoryService.getCreateAccountState);
+      this.spinner.hide();
+      this.router.navigate(['/hear-about-us']);
     });
   }
 

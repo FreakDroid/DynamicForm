@@ -4,6 +4,7 @@ import { HearAboutComponent } from './hear-about/hear-about.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {NgbModule, NgbRadioGroup} from '@ng-bootstrap/ng-bootstrap';
+import {MemoryDataService} from '../memory-data/memory-data.service';
 
 @NgModule({
   declarations: [HearAboutComponent],
@@ -15,7 +16,7 @@ import {NgbModule, NgbRadioGroup} from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   providers: [
-    NgbRadioGroup
+    NgbRadioGroup, MemoryDataService
   ]
 })
 export class HearAboutModule { }

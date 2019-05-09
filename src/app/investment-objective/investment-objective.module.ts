@@ -4,6 +4,8 @@ import { InvestmentObjectiveComponent } from './investment-objective/investment-
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule, NgbRadioGroup} from '@ng-bootstrap/ng-bootstrap';
+import {MemoryDataService} from '../memory-data/memory-data.service';
+import {CreateAccountService} from '../create-account/create-account.service';
 
 @NgModule({
   declarations: [InvestmentObjectiveComponent],
@@ -15,7 +17,9 @@ import {NgbModule, NgbRadioGroup} from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   providers: [
-    NgbRadioGroup
+    NgbRadioGroup,
+    MemoryDataService,
+    CreateAccountService
   ]
 })
 export class InvestmentObjectiveModule { }
