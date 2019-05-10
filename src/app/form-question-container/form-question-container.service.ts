@@ -28,6 +28,7 @@ export class FormQuestionContainerService {
   }
 
   saveValue(formValue, withFiles) {
+    delete formValue.withFiles;
     if (withFiles === 1) {
       const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
       const formData = new FormData();

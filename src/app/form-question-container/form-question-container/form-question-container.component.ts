@@ -84,26 +84,14 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       dynamicFormValue.step = this.current.step;
       dynamicFormValue.view = this.current.view;
 
-      let withFiles = 0;
-      const selfie = dynamicFormValue && dynamicFormValue.selfie;
-      const front = dynamicFormValue && dynamicFormValue.front;
-      const back = dynamicFormValue && dynamicFormValue.back;
-      const signature = dynamicFormValue && dynamicFormValue.signature;
-
-      if (selfie) {
-        dynamicFormValue.selfie = selfie[0].preview.split(',')[1];
-        withFiles = 1;
-      } else if (front) {
-        dynamicFormValue.front = front[0].preview.split(',')[1];
-        dynamicFormValue.back = back[0].preview.split(',')[1];
-        withFiles = 2;
-      } else if (signature) {
-        dynamicFormValue.signature = signature[0].preview.split(',')[1];
-        withFiles = 3;
+      if (this.current.step == 5 && this.current.view == 1) {
+        dynamicFormValue = this.getImage(dynamicFormValue);
+      } else {
+        dynamicFormValue.withFiles = 0;
       }
-
+      console.log('dynamic ');
       console.log(dynamicFormValue);
-      this.subscription.push(this.formService.saveValue(dynamicFormValue, withFiles).subscribe(rest => {
+      this.subscription.push(this.formService.saveValue(dynamicFormValue, dynamicFormValue.withFiles).subscribe(rest => {
           console.log(rest);
           this.fillForm(rest);
           this.spinner.hide();
@@ -122,8 +110,38 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  getImage() {
-
+  getImage(dynamicFormValue) {
+    console.log(dynamicFormValue.selfie[0].preview.changingThisBreaksApplicationSecurity);
+    const selfie = (dynamicFormValue && dynamicFormValue.selfie) || (dynamicFormValue && dynamicFormValue.selfie);
+    const front = dynamicFormValue && dynamicFormValue.front;
+    const back = dynamicFormValue && dynamicFormValue.back;
+    const signature = dynamicFormValue && dynamicFormValue.signature;
+    if (selfie) {
+      console.log(selfie[0].preview);
+      const image = selfie[0].preview;
+      const imageClean = image.changingThisBreaksApplicationSecurity ? image.changingThisBreaksApplicationSecurity :  image;
+      dynamicFormValue.selfie = imageClean.split(',')[1];
+      dynamicFormValue.withFiles = 1;
+      console.log('sali');
+    } else if (front) {
+      const imageFront = front[0].preview;
+      const imageCleanFront = imageFront.changingThisBreaksApplicationSecurity ?
+        imageFront.changingThisBreaksApplicationSecurity :  imageFront;
+      const imageBack = back[0].preview;
+      const imageCleanBack = imageBack.changingThisBreaksApplicationSecurity ?
+        imageBack.changingThisBreaksApplicationSecurity :  imageBack;
+      dynamicFormValue.front = imageCleanFront.preview.split(',')[1];
+      dynamicFormValue.back = imageCleanBack.preview.split(',')[1];
+      dynamicFormValue.withFiles = 2;
+    } else if (signature) {
+      const imagesignature = signature[0].preview;
+      const imageCleansignature = imagesignature.changingThisBreaksApplicationSecurity ?
+        imagesignature.changingThisBreaksApplicationSecurity :  imagesignature;
+      dynamicFormValue.signature = imageCleansignature.preview.split(',')[1];
+      dynamicFormValue.withFiles = 3;
+    }
+    console.log(dynamicFormValue.selfie);
+    return dynamicFormValue;
   }
 
   backGoTo() {

@@ -12,7 +12,7 @@ import {FormGroup} from '@angular/forms';
         <input type="button" class="button-rounded" (click)="decrease(field.value)" value="-">
         <input class="form-control textbox-decrease-increase align-middle" type="number"
                [id]="field.name" [name]="field.name" [formControlName]="field.name" [minlength]="field.min"
-               [maxlength]="field.max">
+               [maxlength]="field.max" >
         <input type="button" (click)="increase(field.value)" value="+" class="button-rounded">
       </div>
     </div>
