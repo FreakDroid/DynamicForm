@@ -27,12 +27,26 @@ export class FormQuestionContainerService {
     return this.http.post<DynamicFormModel>(this.URL + 'onboarding/check', payload, {headers: HEADERS});
   }
 
-  saveValue(formValue) {
-    const HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('X-Api-Token', data.xapitoken);
-    formValue.ticket = localStorage.getItem('ticket');
-    const payload = Utils.createHttpParams(formValue);
-    return this.http.post(this.URL + 'onboarding/save', payload, {headers: HEADERS});
+  saveValue(formValue, isFile) {
+
+    if (isFile) {
+      const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
+      const formData = new FormData();
+      formData.append('selfie', formValue.selfie);
+      formData.append('step', formValue.step);
+      formData.append('view', formValue.view);
+      formData.append('ticket', localStorage.getItem('ticket'));
+
+      //formValue.ticket = localStorage.getItem('ticket');
+      console.log('test');
+      return this.http.post(this.URL + 'onboarding/save', formData, {headers: HEADERS});
+    } else {
+      const HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('X-Api-Token', data.xapitoken);
+      formValue.ticket = localStorage.getItem('ticket');
+      const payload = Utils.createHttpParams(formValue);
+      return this.http.post(this.URL + 'onboarding/save', payload, {headers: HEADERS});
+    }
   }
 
   backGoto(backFormData) {

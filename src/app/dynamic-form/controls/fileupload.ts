@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 // text,email,tel,textarea,password,
 @Component({
@@ -16,12 +17,15 @@ export class FileUploadComponent implements OnInit {
   get isValid() { return this.form.controls[this.field.name].valid; }
   get isDirty() { return this.form.controls[this.field.name].dirty; }
 
-  constructor() {
+  img: any;
 
+  constructor(private sanitizer: DomSanitizer) {
   }
+
   ngOnInit(): void {
+    this.img = [{ preview: this.sanitizer.bypassSecurityTrustResourceUrl(this.field.value[0].preview)}];
     setTimeout(() => {
-      this.form.controls[this.field.name].setValue(this.field.value);
+      this.form.controls[this.field.name].setValue(this.img);
     });
   }
 

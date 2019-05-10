@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {AuthService} from '../../auth/auth.service';
 import {Utils} from '../../util/Utils';
+import {InputFile} from 'ngx-input-file';
 
 @Component({
   selector: 'app-form-question-container',
@@ -27,19 +28,15 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   prev: any;
   step: any;
   view: any;
+  fileData: InputFile = null;
 
   ngOnInit() {
     //Changing the URL
-    console.log('llegue a dynamic');
     this.location.replaceState('/dynamic');
     this.step = this.route.snapshot.paramMap.get('step');
     this.view = this.route.snapshot.paramMap.get('view');
-
-    console.log('step', this.step);
-    console.log('step', this.view);
-
     if (this.step && this.view) {
-      this.current = {step : this.step, view: this.view};
+      this.current = {step: this.step, view: this.view};
       this.backGoTo();
     } else {
       this.checkStep();
@@ -73,12 +70,8 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       error => {
         console.log('error', error);
 
-        if (error.status == 403 && error.error.redirect == '/waiting_for_approval') {
-          console.log('waiting_for_approval');
-          this.router.navigate(['/waiting_for_approval']);
-        } else if (error.status == 403 && error.error.redirect == '/email_not_verify') {
-          console.log('/validate');
-          this.router.navigate(['/validate']);
+        if (error.status == 403) {
+          this.router.navigate(['/' + error.error.redirect]);
         }
         this.toastr.error(error.error.message, 'Error');
       }
@@ -86,34 +79,42 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(dynamicFormValue) {
-    this.spinner.show();
-    dynamicFormValue.step = this.current.step;
-    dynamicFormValue.view = this.current.view;
-    console.log(dynamicFormValue);
+    try {
+      this.spinner.show();
+      dynamicFormValue.step = this.current.step;
+      dynamicFormValue.view = this.current.view;
+      console.log(dynamicFormValue);
+      const file = dynamicFormValue && dynamicFormValue.selfie;
+      console.log(file);
+      let isFile = false;
+      if (file) {
+        console.log(file[0]);
+        dynamicFormValue.selfie = file[0].preview.split(',')[1];
+        isFile = true;
+      }
 
-    const file = dynamicFormValue && dynamicFormValue.selfie;
-    console.log(file);
+      console.log(dynamicFormValue);
+      this.subscription.push(this.formService.saveValue(dynamicFormValue, isFile).subscribe(rest => {
+          console.log(rest);
+          this.fillForm(rest);
+          this.spinner.hide();
+        },
+        error => {
+          if (error.error.error == 400) {
+            const errorsMessages = Utils.transformErrorMessage(error.error.messages_form);
+            this.toastr.error(errorsMessages, 'Error');
+          } else {
+            this.toastr.error(error.error.message, 'Error');
+          }
+          this.spinner.hide();
+        }));
+    } catch (e) {
 
-    if (file) {
-      console.log(file[0]);
-      dynamicFormValue.selfie = file[0].preview.split(',')[1];
     }
+  }
 
-    console.log(dynamicFormValue);
-    this.subscription.push(this.formService.saveValue(dynamicFormValue).subscribe(rest => {
-        console.log(rest);
-        this.fillForm(rest);
-        this.spinner.hide();
-      },
-      error => {
-        if (error.error.error == 400) {
-          const errorsMessages = Utils.transformErrorMessage(error.error.messages_form);
-          this.toastr.error(errorsMessages, 'Error');
-        } else {
-          this.toastr.error(error.error.message, 'Error');
-        }
-        this.spinner.hide();
-      }));
+  getImage() {
+
   }
 
   backGoTo() {

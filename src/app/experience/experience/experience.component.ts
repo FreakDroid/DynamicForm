@@ -41,6 +41,6 @@ export class ExperienceComponent implements OnInit {
   }
 
   goback() {
-    this.router.navigate(['/experience']);
+    this.router.navigate(['/hear-about-us']);
   }
 }

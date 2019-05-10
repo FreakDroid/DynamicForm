@@ -47,7 +47,7 @@ export class InvestmentObjectiveComponent implements OnInit {
         localStorage.setItem('ticket', ticket);
         // You should redirect to dynamic form.
         this.spinner.hide();
-        this.router.navigate(['/validate']);
+        this.router.navigate(['/email_not_verify']);
       },
       errorCreateAccount => {
         console.log('error creating account', errorCreateAccount);
@@ -57,6 +57,6 @@ export class InvestmentObjectiveComponent implements OnInit {
   }
 
   goback() {
-    this.router.navigate(['/investment-objective']);
+    this.router.navigate(['/experience']);
   }
 }

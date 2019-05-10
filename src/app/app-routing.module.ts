@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'validate',
+    path: 'email_not_verify',
     component:  ValidateEmailComponent
   },
   {

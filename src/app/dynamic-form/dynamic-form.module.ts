@@ -27,7 +27,7 @@ import {LinkComponent} from './controls/link';
 
 //Fileupload Config
 const config: InputFileConfig = {
-  fileAccept: '*',
+  fileAccept: 'image/*',
   fileLimit: 1,
   iconAdd: 'account_circle'
 };
