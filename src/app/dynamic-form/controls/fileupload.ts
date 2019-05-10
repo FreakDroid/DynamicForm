@@ -23,7 +23,8 @@ export class FileUploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.img = [{ preview: this.sanitizer.bypassSecurityTrustResourceUrl(this.field.value[0].preview)}];
+    console.log(this.field.value);
+    this.img = this.field.value && [{ preview: this.sanitizer.bypassSecurityTrustResourceUrl(this.field.value[0].preview)}];
     setTimeout(() => {
       this.form.controls[this.field.name].setValue(this.img);
     });
