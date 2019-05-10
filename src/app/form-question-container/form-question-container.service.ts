@@ -27,9 +27,8 @@ export class FormQuestionContainerService {
     return this.http.post<DynamicFormModel>(this.URL + 'onboarding/check', payload, {headers: HEADERS});
   }
 
-  saveValue(formValue, isFile) {
-
-    if (isFile) {
+  saveValue(formValue, withFiles) {
+    if (withFiles === 1) {
       const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
       const formData = new FormData();
       formData.append('selfie', formValue.selfie);
@@ -37,8 +36,25 @@ export class FormQuestionContainerService {
       formData.append('view', formValue.view);
       formData.append('ticket', localStorage.getItem('ticket'));
 
-      //formValue.ticket = localStorage.getItem('ticket');
-      console.log('test');
+      return this.http.post(this.URL + 'onboarding/save', formData, {headers: HEADERS});
+    } else if (withFiles === 2) {
+      const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
+      const formData = new FormData();
+      formData.append('front', formValue.front);
+      formData.append('back', formValue.back);
+      formData.append('step', formValue.step);
+      formData.append('view', formValue.view);
+      formData.append('ticket', localStorage.getItem('ticket'));
+
+      return this.http.post(this.URL + 'onboarding/save', formData, {headers: HEADERS});
+    } else if (withFiles === 3) {
+      const HEADERS = new HttpHeaders().set('X-Api-Token', data.xapitoken);
+      const formData = new FormData();
+      formData.append('signature', formValue.signature);
+      formData.append('step', formValue.step);
+      formData.append('view', formValue.view);
+      formData.append('ticket', localStorage.getItem('ticket'));
+
       return this.http.post(this.URL + 'onboarding/save', formData, {headers: HEADERS});
     } else {
       const HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

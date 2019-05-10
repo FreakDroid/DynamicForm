@@ -83,18 +83,27 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       this.spinner.show();
       dynamicFormValue.step = this.current.step;
       dynamicFormValue.view = this.current.view;
-      console.log(dynamicFormValue);
-      const file = dynamicFormValue && dynamicFormValue.selfie;
-      console.log(file);
-      let isFile = false;
-      if (file) {
-        console.log(file[0]);
-        dynamicFormValue.selfie = file[0].preview.split(',')[1];
-        isFile = true;
+
+      let withFiles = 0;
+      const selfie = dynamicFormValue && dynamicFormValue.selfie;
+      const front = dynamicFormValue && dynamicFormValue.front;
+      const back = dynamicFormValue && dynamicFormValue.back;
+      const signature = dynamicFormValue && dynamicFormValue.signature;
+
+      if (selfie) {
+        dynamicFormValue.selfie = selfie[0].preview.split(',')[1];
+        withFiles = 1;
+      } else if (front) {
+        dynamicFormValue.front = front[0].preview.split(',')[1];
+        dynamicFormValue.back = back[0].preview.split(',')[1];
+        withFiles = 2;
+      } else if (signature) {
+        dynamicFormValue.signature = signature[0].preview.split(',')[1];
+        withFiles = 3;
       }
 
       console.log(dynamicFormValue);
-      this.subscription.push(this.formService.saveValue(dynamicFormValue, isFile).subscribe(rest => {
+      this.subscription.push(this.formService.saveValue(dynamicFormValue, withFiles).subscribe(rest => {
           console.log(rest);
           this.fillForm(rest);
           this.spinner.hide();
