@@ -84,7 +84,7 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       dynamicFormValue.step = this.current.step;
       dynamicFormValue.view = this.current.view;
 
-      if (this.current.step == 5 && this.current.view == 1) {
+      if ((this.current.step == 5 && this.current.view == 1) || (this.current.step == 5 && this.current.view == 2) || (this.current.step == 6 && this.current.view == 3)) {
         dynamicFormValue = this.getImage(dynamicFormValue);
       } else {
         dynamicFormValue.withFiles = 0;
@@ -111,18 +111,15 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   }
 
   getImage(dynamicFormValue) {
-    console.log(dynamicFormValue.selfie[0].preview.changingThisBreaksApplicationSecurity);
-    const selfie = (dynamicFormValue && dynamicFormValue.selfie) || (dynamicFormValue && dynamicFormValue.selfie);
+    const selfie = (dynamicFormValue && dynamicFormValue.selfie);
     const front = dynamicFormValue && dynamicFormValue.front;
     const back = dynamicFormValue && dynamicFormValue.back;
     const signature = dynamicFormValue && dynamicFormValue.signature;
     if (selfie) {
-      console.log(selfie[0].preview);
       const image = selfie[0].preview;
       const imageClean = image.changingThisBreaksApplicationSecurity ? image.changingThisBreaksApplicationSecurity :  image;
       dynamicFormValue.selfie = imageClean.split(',')[1];
       dynamicFormValue.withFiles = 1;
-      console.log('sali');
     } else if (front) {
       const imageFront = front[0].preview;
       const imageCleanFront = imageFront.changingThisBreaksApplicationSecurity ?
@@ -130,17 +127,16 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
       const imageBack = back[0].preview;
       const imageCleanBack = imageBack.changingThisBreaksApplicationSecurity ?
         imageBack.changingThisBreaksApplicationSecurity :  imageBack;
-      dynamicFormValue.front = imageCleanFront.preview.split(',')[1];
-      dynamicFormValue.back = imageCleanBack.preview.split(',')[1];
+      dynamicFormValue.front = imageCleanFront.split(',')[1];
+      dynamicFormValue.back = imageCleanBack.split(',')[1];
       dynamicFormValue.withFiles = 2;
     } else if (signature) {
       const imagesignature = signature[0].preview;
       const imageCleansignature = imagesignature.changingThisBreaksApplicationSecurity ?
         imagesignature.changingThisBreaksApplicationSecurity :  imagesignature;
-      dynamicFormValue.signature = imageCleansignature.preview.split(',')[1];
+      dynamicFormValue.signature = imageCleansignature.split(',')[1];
       dynamicFormValue.withFiles = 3;
     }
-    console.log(dynamicFormValue.selfie);
     return dynamicFormValue;
   }
 
