@@ -174,6 +174,9 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
     const jsonForm = {basicFormInfo, fields};
     this.formInfo = jsonForm;
 
+    if(res.redirect)
+      this.router.navigate(['/' + res.redirect]);
+
     this.prev = prev ? prev : 0;
 
     console.log('my Prev ', prev);
