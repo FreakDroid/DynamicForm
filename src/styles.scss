@@ -23,6 +23,10 @@ body {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
   }
 
+  .input-file-container {
+    height: 17rem !important;
+  }
+
   input[type=number] {
     -moz-appearance:textfield; /* Firefox */
   }
@@ -217,9 +221,18 @@ body {
     -moz-box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
     box-shadow: -3px 3px 28px 0px rgba(229, 229, 229, 1);
     background: white !important;
+    height: 17rem !important;
 
     .image-preview[_ngcontent-c5] {
       height: 100%;
+    }
+
+    @media (max-width: 760px) {
+      background-color: white;
+    }
+
+    .input-file-container[_ngcontent-c7]{
+      background-color: white;
     }
 
   }
