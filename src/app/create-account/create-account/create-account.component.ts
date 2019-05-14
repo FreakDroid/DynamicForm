@@ -59,6 +59,10 @@ export class CreateAccountComponent implements OnInit {
       console.log(this.memoryService.getCreateAccountState);
       this.spinner.hide();
       this.router.navigate(['/hear-about-us']);
+    }, error => {
+      this.toastr.error(error.error.message, 'Error');
+      this.spinner.hide();
+      this.spinner.hide();
     });
   }
 
