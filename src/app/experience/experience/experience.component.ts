@@ -11,22 +11,21 @@ import {NgxSpinnerService} from 'ngx-spinner';
   styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
-  hearAboutUsForm: FormGroup;
+  investmentExperienceForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private memoryService: MemoryDataService,
-              private spinner: NgxSpinnerService,) { }
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.hearAboutUsForm = this.formBuilder.group({
-      hearAboutUs: new FormControl(''),
-    });
-
-    let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+    const createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
     if (!createAccount) {
       this.router.navigate(['/create-account']);
-    } else{
+    } else {
       const investmentExperience = createAccount.investmentExperience;
-      //this.hearAboutUsForm.hearAboutUs = (investmentExperience = 0) ? 0 : investmentExperience;
+      console.log(investmentExperience);
+      this.investmentExperienceForm = this.formBuilder.group({
+        investmentExperience: new FormControl(investmentExperience ? investmentExperience : ''),
+      });
     }
   }
 

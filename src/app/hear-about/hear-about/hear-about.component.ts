@@ -18,16 +18,15 @@ export class HearAboutComponent implements OnInit {
               private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.hearAboutUsForm = this.formBuilder.group({
-      hearAboutUs: new FormControl(''),
-    });
-
-    let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+    const createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
     if (!createAccount) {
       this.router.navigate(['/create-account']);
-    } else{
-      const investmentExperience = createAccount.investmentExperience;
-      //this.hearAboutUsForm.hearAboutUs = (investmentExperience = 0) ? 0 : investmentExperience;
+    } else {
+      const hearAboutFolionet = createAccount.hearAboutFolionet;
+      console.log(hearAboutFolionet);
+      this.hearAboutUsForm = this.formBuilder.group({
+        hearAboutUs: new FormControl(hearAboutFolionet ? hearAboutFolionet : ''),
+      });
     }
   }
 

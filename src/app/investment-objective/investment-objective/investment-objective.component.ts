@@ -13,32 +13,30 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./investment-objective.component.scss']
 })
 export class InvestmentObjectiveComponent implements OnInit {
-  hearAboutUsForm: FormGroup;
+  investmentObjectiveForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private memoryService: MemoryDataService,
               private spinner: NgxSpinnerService, private createAccountService: CreateAccountService, private toastr: ToastrService) {
   }
 
   ngOnInit() {
-    this.hearAboutUsForm = this.formBuilder.group({
-      hearAboutUs: new FormControl(''),
-    });
-
-    let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+    const createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
     if (!createAccount) {
       this.router.navigate(['/create-account']);
-    } else{
-      const investmentExperience = createAccount.investmentExperience;
-      //this.hearAboutUsForm.hearAboutUs = (investmentExperience = 0) ? 0 : investmentExperience;
+    } else {
+      const investmentObjective = createAccount.investmentObjective;
+      console.log(investmentObjective);
+      this.investmentObjectiveForm = this.formBuilder.group({
+        investmentObjective: new FormControl(investmentObjective ? investmentObjective : ''),
+      });
     }
   }
 
   selected(e) {
-    localStorage.setItem('investment', e);
+    console.log(e);
     let createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
-    createAccount.investmentExperience = e;
+    createAccount.investmentObjective = e;
     this.memoryService.saveCreateAccountState(createAccount);
-
     this.spinner.show();
     this.createAccountService.register(JSON.parse(JSON.stringify(createAccount))).subscribe(resCreateAccount => {
         console.log(resCreateAccount);
@@ -47,6 +45,7 @@ export class InvestmentObjectiveComponent implements OnInit {
         localStorage.setItem('ticket', ticket);
         // You should redirect to dynamic form.
         this.spinner.hide();
+        this.memoryService.saveCreateAccountState(null);
         this.router.navigate(['/email_not_verify']);
       },
       errorCreateAccount => {

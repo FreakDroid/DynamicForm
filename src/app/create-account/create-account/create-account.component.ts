@@ -28,14 +28,17 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit() {
+    const createAccount: CreateAccountModel = this.memoryService.getCreateAccountState;
+
     this.createAccount = this.formBuilder.group({
-        username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        password_confirmation: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        middleName: new FormControl('', Validators.minLength(3)),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(3)])
+        username: new FormControl(createAccount ? createAccount.username : '', [Validators.required, Validators.minLength(6)]),
+        email: new FormControl(createAccount ? createAccount.email : '', [Validators.required, Validators.email]),
+        password: new FormControl(createAccount ? createAccount.password : '', [Validators.required, Validators.minLength(6)]),
+        password_confirmation: new FormControl(createAccount ? createAccount.password_confirmation : '',
+          [Validators.required, Validators.minLength(6)]),
+        firstName: new FormControl(createAccount ? createAccount.firstName : '', [Validators.required, Validators.minLength(3)]),
+        middleName: new FormControl(createAccount ? createAccount.middleName : '', Validators.minLength(3)),
+        lastName: new FormControl(createAccount ? createAccount.lastName : '', [Validators.required, Validators.minLength(3)])
       },
       {
         validator: MustMatch('password', 'password_confirmation')
@@ -43,6 +46,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   goBack() {
+    this.memoryService.saveCreateAccountState(null);
     this.router.navigate(['']);
   }
 
@@ -52,9 +56,12 @@ export class CreateAccountComponent implements OnInit {
     this.tokenService.getToken().subscribe(res => {
       const token = res && res.data && res.data.token;
       console.log(token);
+      const createAccountSaved: CreateAccountModel = this.memoryService.getCreateAccountState;
       const createAccount = new CreateAccountModel(formValue.email,
-        formValue.username, formValue.password, formValue.firstName, formValue.middleName, formValue.lastName, 0,
-        0, 0, token, formValue.password_confirmation);
+        formValue.username, formValue.password, formValue.firstName, formValue.middleName, formValue.lastName,
+        createAccountSaved  ? createAccountSaved.hearAboutFolionet : 0,
+        createAccountSaved  ? createAccountSaved.investmentExperience : 0,
+        createAccountSaved  ? createAccountSaved.investmentObjective : 0, token, formValue.password_confirmation);
       this.memoryService.saveCreateAccountState(createAccount);
       console.log(this.memoryService.getCreateAccountState);
       this.spinner.hide();
