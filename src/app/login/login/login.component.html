@@ -41,8 +41,8 @@
       </div>
 
       <div class="form-group text-center button-login-margin">
-        <button type="submit" class="btn btn-blue mb-2 margin-right" (click)="goToCreateAccount()">Create Account</button>
-        <button type="submit" class="btn btn-green mb-2 " [disabled] = "!loginForm.valid">Log in</button>
+        <button type="submit" class="btn btn-green mb-2 margin-right" [disabled] = "!loginForm.valid">Log in</button>
+        <button type="submit" class="btn btn-blue mb-2" (click)="goToCreateAccount()">Create Account</button>
       </div>
     </form>
 
