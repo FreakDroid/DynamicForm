@@ -39,6 +39,8 @@ export class DynamicFormComponent implements OnInit {
         for (const opt of f.options) {
           opts[opt.key] = new FormControl(opt.value);
         }
+        console.log('option');
+        console.log(opts);
         fieldsCtrls[f.name] = new FormGroup(opts);
       }
     }
