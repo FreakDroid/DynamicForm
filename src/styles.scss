@@ -12,6 +12,16 @@ body {
     margin-top: 5%
   }
 
+  .btn-primary:not(:disabled):not(.disabled).active {
+    .titleH6{
+      color: white;
+    }
+  }
+
+  .titleH6{
+    color: #3AAAE8;
+  }
+
   .form-control::-webkit-input-placeholder { color: #f2f2f2; }  /* WebKit, Blink, Edge */
   .form-control:-moz-placeholder { color: #f2f2f2; }  /* Mozilla Firefox 4 to 18 */
   .form-control::-moz-placeholder { color: #f2f2f2; }  /* Mozilla Firefox 19+ */
