@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
         <label class="form-control-label" [attr.for]="field.label">
           {{field.label}}
         </label>
+        <br/>
         <ui-switch class="align-middle switch-style"
                    (change)="onChange($event)" [formControlName]="field.name"></ui-switch>
       </div>
@@ -32,21 +33,23 @@ export class SwitchToggleFieldComponent implements OnInit {
   @Input() form: FormGroup;
   showMe = false;
 
-  constructor() {
+  constructor(private cd: ChangeDetectorRef) {
 
   }
 
   ngOnInit(): void {
-    console.log(this.field.name);
-    console.log(this.field);
-    console.log('this.form.controls[this.field.name]', this.form.controls[this.field.name].value);
-    if (this.field.value != '') {
-      this.form.controls[this.field.name].setValue(this.field.value);
-      this.onChange(this.field.value);
-    } else {
-      this.form.controls[this.field.name].setValue(false);
-      this.disableEnableControls();
-    }
+    setTimeout(() => {
+      console.log(this.field.name);
+      console.log(this.field);
+      console.log('this.form.controls[this.field.name]', this.form.controls[this.field.name].value);
+      if (this.field.value != '') {
+        this.form.controls[this.field.name].setValue(this.field.value);
+        this.onChange(this.field.value);
+      } else {
+        this.form.controls[this.field.name].setValue(false);
+        this.disableEnableControls();
+      }
+    });
   }
 
   onChange(e) {
