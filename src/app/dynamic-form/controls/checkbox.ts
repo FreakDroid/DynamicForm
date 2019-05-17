@@ -8,8 +8,9 @@ import {FormGroup, FormGroupDirective, ControlContainer, NG_VALUE_ACCESSOR} from
     <div [formGroup]="form">
       <div [formGroupName]="field.name" >
         <div *ngFor="let opt of field.options" class="form-check form-check">
-          <label class="form-check-label">
-            <input [formControlName]="opt.key" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+          <label class="form-check-label checkbox-inline">
+            <input [formControlName]="opt.key" class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                   value="option1" [checked]="opt.cheked" />
             {{opt.label}}</label>
         </div>
       </div>

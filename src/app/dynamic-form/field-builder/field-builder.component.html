@@ -18,7 +18,7 @@
 
     <app-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-checkbox>
 
-    <app-link *ngSwitchCase="'link'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-link>
+
     <div class="dynamicForm-maxSize switch-box">
       <div class="dynamicForm-maxSize fa-pull-left">
         <label class="form-control-label mid-size" [attr.for]="field.label"
@@ -50,6 +50,11 @@
                                     [field]="field"
                                     [form]="form">
     </app-text-box-increase-decrease>
+
+    <app-group-link [field]="field?.links"></app-group-link>
+
+    <app-button-left-redirect class="dynamicForm-maxSize"  *ngSwitchCase="'app-button-left-redirect'" [field]="field"></app-button-left-redirect>
+
 
   </div>
 </div>
