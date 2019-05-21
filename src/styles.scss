@@ -12,6 +12,40 @@ body {
     margin-top: 5%
   }
 
+  a {
+    text-decoration: underline;
+    line-height: 22px;
+  }
+
+  .link-no-margin {
+    margin: 0;
+  }
+
+  .checkIcon {
+    color: black !important;
+    float: left !important;
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .fancy-checkbox{
+    display: inline-block;
+    vertical-align:middle;
+  }
+
+  .label--flexbox {
+    display: flex;
+    align-items: center;
+    fa-icon {
+      color: black !important;
+      font-size: 1em !important;
+      padding: 5px;
+
+    }
+  }
+
+
+
   .btn-primary:not(:disabled):not(.disabled).active {
     .titleH6{
       color: white;

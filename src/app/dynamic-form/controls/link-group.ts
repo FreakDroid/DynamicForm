@@ -6,7 +6,7 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
   selector: 'app-group-link',
   template: `
     <div class="input-group" *ngFor="let link of field">
-      <a href='{{link.url}}'>{{link.label}}</a>
+      <a href='{{link.url}}' target="_blank">{{link.label}}</a>
     </div>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]

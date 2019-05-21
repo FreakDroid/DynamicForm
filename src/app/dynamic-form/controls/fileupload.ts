@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'app-fileupload',
   template: `
       <div [formGroup]="form">
-        <input-file  [formControlName]="field.name"></input-file>
+        <input-file [iconAdd]="field.icon"  [formControlName]="field.name"></input-file>
       </div>
     `,
 })

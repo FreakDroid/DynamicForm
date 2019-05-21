@@ -16,7 +16,7 @@
 
 
 
-    <app-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-checkbox>
+    <app-checkbox *ngSwitchCase="'checkbox-icon'" [field]="field" [form]="form" class="dynamicForm-maxSize"></app-checkbox>
 
 
     <div class="dynamicForm-maxSize switch-box">
@@ -51,7 +51,7 @@
                                     [form]="form">
     </app-text-box-increase-decrease>
 
-    <app-group-link [field]="field?.links"></app-group-link>
+    <app-group-link class="link-no-margin" [field]="field?.links"></app-group-link>
 
     <app-button-left-redirect class="dynamicForm-maxSize"  *ngSwitchCase="'app-button-left-redirect'" [field]="field"></app-button-left-redirect>
 

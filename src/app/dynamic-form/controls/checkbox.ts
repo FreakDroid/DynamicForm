@@ -7,11 +7,12 @@ import {FormGroup, FormGroupDirective, ControlContainer, NG_VALUE_ACCESSOR} from
   template: `
     <div [formGroup]="form">
       <div [formGroupName]="field.name" >
-        <div *ngFor="let opt of field.options" class="form-check form-check">
-          <label class="form-check-label checkbox-inline">
-            <input [formControlName]="opt.key" class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                   value="option1" [checked]="opt.cheked" disabled="opt.cheked" />
-            {{opt.label}}</label>
+        <div *ngFor="let opt of field.options">
+          <div class="label--flexbox no-padding-left">
+            <fa-icon class="checkIcon" [icon]="['fa', 'check']"></fa-icon>
+            <label class="form-check-label checkbox-inline">
+              {{opt.label}}</label>
+          </div>
         </div>
       </div>
     </div>

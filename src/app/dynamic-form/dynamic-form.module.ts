@@ -9,7 +9,7 @@ import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
 import {TextBoxComponent} from './controls/textbox';
 import {FieldBuilderComponent} from './field-builder/field-builder.component';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
+import {faExclamationCircle, faCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RadioButtonComponent} from './controls/radioButton';
 import {DropDownComponent} from './controls/dropdown';
@@ -31,8 +31,7 @@ import {ButtonLeftRedirectComponent} from './controls/buton-left-redirect';
 //Fileupload Config
 const config: InputFileConfig = {
   fileAccept: 'image/*',
-  fileLimit: 1,
-  iconAdd: 'account_circle'
+  fileLimit: 1
 };
 
 @NgModule({
@@ -63,5 +62,6 @@ const config: InputFileConfig = {
 export class DynamicFormModule {
   constructor() {
     library.add(faExclamationCircle);
+    library.add(faCheck);
   }
 }
