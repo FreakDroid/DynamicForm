@@ -62,10 +62,12 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
   }
 
   checkStep() {
+    this.spinner.show();
     this.subscription.push(this.formService.checkStep().subscribe((res: DynamicFormModel) => {
         console.log(res);
         // @ts-ignore
         this.fillForm(res);
+        this.spinner.hide();
       },
       error => {
         console.log('error', error);
@@ -73,7 +75,8 @@ export class FormQuestionContainerComponent implements OnInit, OnDestroy {
         if (error.status == 403) {
           this.router.navigate(['/' + error.error.redirect]);
         }
-        this.toastr.error(error.error.message, 'Error');
+        //this.toastr.error(error.error.message, 'Error');
+        this.spinner.hide();
       }
     ));
   }

@@ -5,7 +5,7 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
 @Component({
   selector: 'app-link',
   template: `
-      <a href='{{field.url}}'>{{field.label}}</a>
+      <a class="undreline-link" href='{{field.url}}' target="_blank">{{field.label}}</a>
   `,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
