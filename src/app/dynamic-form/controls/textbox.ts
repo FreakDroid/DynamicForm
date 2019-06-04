@@ -14,6 +14,7 @@ import {ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
                 rows="9" class="form-control" [placeholder]="field.placeholder"></textarea>
       <fa-icon *ngIf="form.controls[field.name]?.errors"
                [icon]="['fa', 'exclamation-circle']"></fa-icon>
+      <p *ngIf="field.message" class="message-TextBox">{{field?.message}}</p>
     </div>
   `,
   viewProviders: [{provide: ControlContainer, useExisting: FormGroupDirective}]
